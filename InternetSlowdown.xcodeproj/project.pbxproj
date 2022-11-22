@@ -1,0 +1,573 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A20907C9292D40F1003E0C74 /* InternetSlowdownApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20907C8292D40F1003E0C74 /* InternetSlowdownApp.swift */; };
+		A20907CB292D40F1003E0C74 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20907CA292D40F1003E0C74 /* ContentView.swift */; };
+		A20907CD292D40F2003E0C74 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A20907CC292D40F2003E0C74 /* Assets.xcassets */; };
+		A20907D0292D40F2003E0C74 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A20907CF292D40F2003E0C74 /* Preview Assets.xcassets */; };
+		A20907DB292D40F2003E0C74 /* InternetSlowdownTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20907DA292D40F2003E0C74 /* InternetSlowdownTests.swift */; };
+		A20907E5292D40F2003E0C74 /* InternetSlowdownUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20907E4292D40F2003E0C74 /* InternetSlowdownUITests.swift */; };
+		A20907E7292D40F2003E0C74 /* InternetSlowdownUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20907E6292D40F2003E0C74 /* InternetSlowdownUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A20907D7292D40F2003E0C74 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A20907BD292D40F1003E0C74 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A20907C4292D40F1003E0C74;
+			remoteInfo = InternetSlowdown;
+		};
+		A20907E1292D40F2003E0C74 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A20907BD292D40F1003E0C74 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A20907C4292D40F1003E0C74;
+			remoteInfo = InternetSlowdown;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		A20907C5292D40F1003E0C74 /* InternetSlowdown.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InternetSlowdown.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A20907C8292D40F1003E0C74 /* InternetSlowdownApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternetSlowdownApp.swift; sourceTree = "<group>"; };
+		A20907CA292D40F1003E0C74 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		A20907CC292D40F2003E0C74 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A20907CF292D40F2003E0C74 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		A20907D1292D40F2003E0C74 /* InternetSlowdown.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = InternetSlowdown.entitlements; sourceTree = "<group>"; };
+		A20907D6292D40F2003E0C74 /* InternetSlowdownTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InternetSlowdownTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A20907DA292D40F2003E0C74 /* InternetSlowdownTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternetSlowdownTests.swift; sourceTree = "<group>"; };
+		A20907E0292D40F2003E0C74 /* InternetSlowdownUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InternetSlowdownUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A20907E4292D40F2003E0C74 /* InternetSlowdownUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternetSlowdownUITests.swift; sourceTree = "<group>"; };
+		A20907E6292D40F2003E0C74 /* InternetSlowdownUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternetSlowdownUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A20907C2292D40F1003E0C74 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A20907D3292D40F2003E0C74 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A20907DD292D40F2003E0C74 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A20907BC292D40F1003E0C74 = {
+			isa = PBXGroup;
+			children = (
+				A20907C7292D40F1003E0C74 /* InternetSlowdown */,
+				A20907D9292D40F2003E0C74 /* InternetSlowdownTests */,
+				A20907E3292D40F2003E0C74 /* InternetSlowdownUITests */,
+				A20907C6292D40F1003E0C74 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A20907C6292D40F1003E0C74 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A20907C5292D40F1003E0C74 /* InternetSlowdown.app */,
+				A20907D6292D40F2003E0C74 /* InternetSlowdownTests.xctest */,
+				A20907E0292D40F2003E0C74 /* InternetSlowdownUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A20907C7292D40F1003E0C74 /* InternetSlowdown */ = {
+			isa = PBXGroup;
+			children = (
+				A20907C8292D40F1003E0C74 /* InternetSlowdownApp.swift */,
+				A20907CA292D40F1003E0C74 /* ContentView.swift */,
+				A20907CC292D40F2003E0C74 /* Assets.xcassets */,
+				A20907D1292D40F2003E0C74 /* InternetSlowdown.entitlements */,
+				A20907CE292D40F2003E0C74 /* Preview Content */,
+			);
+			path = InternetSlowdown;
+			sourceTree = "<group>";
+		};
+		A20907CE292D40F2003E0C74 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				A20907CF292D40F2003E0C74 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		A20907D9292D40F2003E0C74 /* InternetSlowdownTests */ = {
+			isa = PBXGroup;
+			children = (
+				A20907DA292D40F2003E0C74 /* InternetSlowdownTests.swift */,
+			);
+			path = InternetSlowdownTests;
+			sourceTree = "<group>";
+		};
+		A20907E3292D40F2003E0C74 /* InternetSlowdownUITests */ = {
+			isa = PBXGroup;
+			children = (
+				A20907E4292D40F2003E0C74 /* InternetSlowdownUITests.swift */,
+				A20907E6292D40F2003E0C74 /* InternetSlowdownUITestsLaunchTests.swift */,
+			);
+			path = InternetSlowdownUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A20907C4292D40F1003E0C74 /* InternetSlowdown */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A20907EA292D40F2003E0C74 /* Build configuration list for PBXNativeTarget "InternetSlowdown" */;
+			buildPhases = (
+				A20907C1292D40F1003E0C74 /* Sources */,
+				A20907C2292D40F1003E0C74 /* Frameworks */,
+				A20907C3292D40F1003E0C74 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = InternetSlowdown;
+			productName = InternetSlowdown;
+			productReference = A20907C5292D40F1003E0C74 /* InternetSlowdown.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A20907D5292D40F2003E0C74 /* InternetSlowdownTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A20907ED292D40F2003E0C74 /* Build configuration list for PBXNativeTarget "InternetSlowdownTests" */;
+			buildPhases = (
+				A20907D2292D40F2003E0C74 /* Sources */,
+				A20907D3292D40F2003E0C74 /* Frameworks */,
+				A20907D4292D40F2003E0C74 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A20907D8292D40F2003E0C74 /* PBXTargetDependency */,
+			);
+			name = InternetSlowdownTests;
+			productName = InternetSlowdownTests;
+			productReference = A20907D6292D40F2003E0C74 /* InternetSlowdownTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		A20907DF292D40F2003E0C74 /* InternetSlowdownUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A20907F0292D40F2003E0C74 /* Build configuration list for PBXNativeTarget "InternetSlowdownUITests" */;
+			buildPhases = (
+				A20907DC292D40F2003E0C74 /* Sources */,
+				A20907DD292D40F2003E0C74 /* Frameworks */,
+				A20907DE292D40F2003E0C74 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A20907E2292D40F2003E0C74 /* PBXTargetDependency */,
+			);
+			name = InternetSlowdownUITests;
+			productName = InternetSlowdownUITests;
+			productReference = A20907E0292D40F2003E0C74 /* InternetSlowdownUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A20907BD292D40F1003E0C74 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1410;
+				LastUpgradeCheck = 1410;
+				TargetAttributes = {
+					A20907C4292D40F1003E0C74 = {
+						CreatedOnToolsVersion = 14.1;
+					};
+					A20907D5292D40F2003E0C74 = {
+						CreatedOnToolsVersion = 14.1;
+						TestTargetID = A20907C4292D40F1003E0C74;
+					};
+					A20907DF292D40F2003E0C74 = {
+						CreatedOnToolsVersion = 14.1;
+						TestTargetID = A20907C4292D40F1003E0C74;
+					};
+				};
+			};
+			buildConfigurationList = A20907C0292D40F1003E0C74 /* Build configuration list for PBXProject "InternetSlowdown" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A20907BC292D40F1003E0C74;
+			productRefGroup = A20907C6292D40F1003E0C74 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A20907C4292D40F1003E0C74 /* InternetSlowdown */,
+				A20907D5292D40F2003E0C74 /* InternetSlowdownTests */,
+				A20907DF292D40F2003E0C74 /* InternetSlowdownUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A20907C3292D40F1003E0C74 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A20907D0292D40F2003E0C74 /* Preview Assets.xcassets in Resources */,
+				A20907CD292D40F2003E0C74 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A20907D4292D40F2003E0C74 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A20907DE292D40F2003E0C74 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A20907C1292D40F1003E0C74 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A20907CB292D40F1003E0C74 /* ContentView.swift in Sources */,
+				A20907C9292D40F1003E0C74 /* InternetSlowdownApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A20907D2292D40F2003E0C74 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A20907DB292D40F2003E0C74 /* InternetSlowdownTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A20907DC292D40F2003E0C74 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A20907E7292D40F2003E0C74 /* InternetSlowdownUITestsLaunchTests.swift in Sources */,
+				A20907E5292D40F2003E0C74 /* InternetSlowdownUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A20907D8292D40F2003E0C74 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A20907C4292D40F1003E0C74 /* InternetSlowdown */;
+			targetProxy = A20907D7292D40F2003E0C74 /* PBXContainerItemProxy */;
+		};
+		A20907E2292D40F2003E0C74 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A20907C4292D40F1003E0C74 /* InternetSlowdown */;
+			targetProxy = A20907E1292D40F2003E0C74 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		A20907E8292D40F2003E0C74 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.6;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A20907E9292D40F2003E0C74 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.6;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		A20907EB292D40F2003E0C74 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = InternetSlowdown/InternetSlowdown.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"InternetSlowdown/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = mateo.InternetSlowdown;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		A20907EC292D40F2003E0C74 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = InternetSlowdown/InternetSlowdown.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"InternetSlowdown/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = mateo.InternetSlowdown;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		A20907EE292D40F2003E0C74 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = mateo.InternetSlowdownTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/InternetSlowdown.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/InternetSlowdown";
+			};
+			name = Debug;
+		};
+		A20907EF292D40F2003E0C74 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = mateo.InternetSlowdownTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/InternetSlowdown.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/InternetSlowdown";
+			};
+			name = Release;
+		};
+		A20907F1292D40F2003E0C74 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = mateo.InternetSlowdownUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = InternetSlowdown;
+			};
+			name = Debug;
+		};
+		A20907F2292D40F2003E0C74 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = mateo.InternetSlowdownUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = InternetSlowdown;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A20907C0292D40F1003E0C74 /* Build configuration list for PBXProject "InternetSlowdown" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A20907E8292D40F2003E0C74 /* Debug */,
+				A20907E9292D40F2003E0C74 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A20907EA292D40F2003E0C74 /* Build configuration list for PBXNativeTarget "InternetSlowdown" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A20907EB292D40F2003E0C74 /* Debug */,
+				A20907EC292D40F2003E0C74 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A20907ED292D40F2003E0C74 /* Build configuration list for PBXNativeTarget "InternetSlowdownTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A20907EE292D40F2003E0C74 /* Debug */,
+				A20907EF292D40F2003E0C74 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A20907F0292D40F2003E0C74 /* Build configuration list for PBXNativeTarget "InternetSlowdownUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A20907F1292D40F2003E0C74 /* Debug */,
+				A20907F2292D40F2003E0C74 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A20907BD292D40F1003E0C74 /* Project object */;
+}
