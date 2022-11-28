@@ -8,7 +8,37 @@
 import XCTest
 @testable import InternetSlowdown
 
-final class InternetSlowdownTests: XCTestCase {
+final class ISXPCClientTests: XCTestCase {
+
+    var xpc = ISXPCClient()
+    
+    func testEmptyAuthRef() {
+        XCTAssertNil(xpc.clientAuthRef)
+    }
+    
+    func testAuthorizationIsAuthorizationExternalForm() {
+        XCTAssertTrue(xpc.authorization is AuthorizationExternalForm)
+    }
+    
+    func testAuthorizationExistsMethod() {
+        XCTAssertFalse(xpc.authorizationExists(xpc.authorization))
+        xpc.authorization = AuthorizationExternalForm(bytes: (1,-1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0))
+        XCTAssertTrue(xpc.authorizationExists(xpc.authorization))
+    }
+    
+    func testSetupAuthorization() throws {
+        try xpc.setupAuthorization()
+        // If authorization fails, then xpc.clientAuthRef remains nil
+        XCTAssertNotNil(xpc.clientAuthRef)
+        XCTAssertTrue(xpc.authorizationExists(xpc.authorization))
+    }
+
+//    func testPerformanceExample() throws {
+//        // This is an example of a performance test case.
+//        self.measure {
+//            // Put the code you want to measure the time of here.
+//        }
+//    }
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -25,12 +55,4 @@ final class InternetSlowdownTests: XCTestCase {
         // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
         // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-
 }

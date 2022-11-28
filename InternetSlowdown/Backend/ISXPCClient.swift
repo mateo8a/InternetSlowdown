@@ -32,16 +32,14 @@ class ISXPCClient {
         }
         
         // Create external authorization reference
-        var extFormRef = AuthorizationExternalForm()
-        resultCode = AuthorizationMakeExternalForm(clientAuthRef!, &extFormRef);
+        resultCode = AuthorizationMakeExternalForm(clientAuthRef!, &authorization);
         
         if (resultCode != errAuthorizationSuccess) {
             let error: CFString = SecCopyErrorMessageString(resultCode, nil)!
             throw ISError.externalAuthCreation(error)
         }
-        authorization = extFormRef
         print("Ext form ref:")
-        print(extFormRef)
+        print(authorization)
         
         Authorization.setupAuthorizationRights(authRef: clientAuthRef)
     }
