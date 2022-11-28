@@ -14,6 +14,12 @@
 		A20907DB292D40F2003E0C74 /* InternetSlowdownTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20907DA292D40F2003E0C74 /* InternetSlowdownTests.swift */; };
 		A20907E5292D40F2003E0C74 /* InternetSlowdownUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20907E4292D40F2003E0C74 /* InternetSlowdownUITests.swift */; };
 		A20907E7292D40F2003E0C74 /* InternetSlowdownUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20907E6292D40F2003E0C74 /* InternetSlowdownUITestsLaunchTests.swift */; };
+		A20907F8292D61E4003E0C74 /* ISXPCClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20907F7292D61E4003E0C74 /* ISXPCClient.swift */; };
+		A20907FA292D79DE003E0C74 /* AppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20907F9292D79DE003E0C74 /* AppController.swift */; };
+		A209080429303ECB003E0C74 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = A209080329303ECB003E0C74 /* main.swift */; };
+		A209080B2931081E003E0C74 /* Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = A209080A2931081E003E0C74 /* Authorization.swift */; };
+		A209080D29319326003E0C74 /* ISError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A209080C29319326003E0C74 /* ISError.swift */; };
+		A209080F29340950003E0C74 /* ISLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = A209080E29340950003E0C74 /* ISLogger.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,7 +37,26 @@
 			remoteGlobalIDString = A20907C4292D40F1003E0C74;
 			remoteInfo = InternetSlowdown;
 		};
+		A209080829303EE1003E0C74 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A20907BD292D40F1003E0C74 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A209080029303ECB003E0C74;
+			remoteInfo = HelperTool;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A20907FF29303ECB003E0C74 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		A20907C5292D40F1003E0C74 /* InternetSlowdown.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InternetSlowdown.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -45,6 +70,13 @@
 		A20907E0292D40F2003E0C74 /* InternetSlowdownUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InternetSlowdownUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A20907E4292D40F2003E0C74 /* InternetSlowdownUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternetSlowdownUITests.swift; sourceTree = "<group>"; };
 		A20907E6292D40F2003E0C74 /* InternetSlowdownUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternetSlowdownUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		A20907F7292D61E4003E0C74 /* ISXPCClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISXPCClient.swift; sourceTree = "<group>"; };
+		A20907F9292D79DE003E0C74 /* AppController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppController.swift; sourceTree = "<group>"; };
+		A209080129303ECB003E0C74 /* HelperTool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = HelperTool; sourceTree = BUILT_PRODUCTS_DIR; };
+		A209080329303ECB003E0C74 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		A209080A2931081E003E0C74 /* Authorization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authorization.swift; sourceTree = "<group>"; };
+		A209080C29319326003E0C74 /* ISError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISError.swift; sourceTree = "<group>"; };
+		A209080E29340950003E0C74 /* ISLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISLogger.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +101,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A20907FE29303ECB003E0C74 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -78,6 +117,7 @@
 				A20907C7292D40F1003E0C74 /* InternetSlowdown */,
 				A20907D9292D40F2003E0C74 /* InternetSlowdownTests */,
 				A20907E3292D40F2003E0C74 /* InternetSlowdownUITests */,
+				A209080229303ECB003E0C74 /* HelperTool */,
 				A20907C6292D40F1003E0C74 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -88,6 +128,7 @@
 				A20907C5292D40F1003E0C74 /* InternetSlowdown.app */,
 				A20907D6292D40F2003E0C74 /* InternetSlowdownTests.xctest */,
 				A20907E0292D40F2003E0C74 /* InternetSlowdownUITests.xctest */,
+				A209080129303ECB003E0C74 /* HelperTool */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -95,8 +136,9 @@
 		A20907C7292D40F1003E0C74 /* InternetSlowdown */ = {
 			isa = PBXGroup;
 			children = (
+				A20907F5292D413F003E0C74 /* Backend */,
+				A20907F6292D6155003E0C74 /* Frontend */,
 				A20907C8292D40F1003E0C74 /* InternetSlowdownApp.swift */,
-				A20907CA292D40F1003E0C74 /* ContentView.swift */,
 				A20907CC292D40F2003E0C74 /* Assets.xcassets */,
 				A20907D1292D40F2003E0C74 /* InternetSlowdown.entitlements */,
 				A20907CE292D40F2003E0C74 /* Preview Content */,
@@ -129,6 +171,34 @@
 			path = InternetSlowdownUITests;
 			sourceTree = "<group>";
 		};
+		A20907F5292D413F003E0C74 /* Backend */ = {
+			isa = PBXGroup;
+			children = (
+				A20907F7292D61E4003E0C74 /* ISXPCClient.swift */,
+				A20907F9292D79DE003E0C74 /* AppController.swift */,
+				A209080A2931081E003E0C74 /* Authorization.swift */,
+				A209080C29319326003E0C74 /* ISError.swift */,
+				A209080E29340950003E0C74 /* ISLogger.swift */,
+			);
+			path = Backend;
+			sourceTree = "<group>";
+		};
+		A20907F6292D6155003E0C74 /* Frontend */ = {
+			isa = PBXGroup;
+			children = (
+				A20907CA292D40F1003E0C74 /* ContentView.swift */,
+			);
+			path = Frontend;
+			sourceTree = "<group>";
+		};
+		A209080229303ECB003E0C74 /* HelperTool */ = {
+			isa = PBXGroup;
+			children = (
+				A209080329303ECB003E0C74 /* main.swift */,
+			);
+			path = HelperTool;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -143,6 +213,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				A209080929303EE1003E0C74 /* PBXTargetDependency */,
 			);
 			name = InternetSlowdown;
 			productName = InternetSlowdown;
@@ -185,6 +256,23 @@
 			productReference = A20907E0292D40F2003E0C74 /* InternetSlowdownUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		A209080029303ECB003E0C74 /* HelperTool */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A209080529303ECB003E0C74 /* Build configuration list for PBXNativeTarget "HelperTool" */;
+			buildPhases = (
+				A20907FD29303ECB003E0C74 /* Sources */,
+				A20907FE29303ECB003E0C74 /* Frameworks */,
+				A20907FF29303ECB003E0C74 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HelperTool;
+			productName = HelperTool;
+			productReference = A209080129303ECB003E0C74 /* HelperTool */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -206,6 +294,9 @@
 						CreatedOnToolsVersion = 14.1;
 						TestTargetID = A20907C4292D40F1003E0C74;
 					};
+					A209080029303ECB003E0C74 = {
+						CreatedOnToolsVersion = 14.1;
+					};
 				};
 			};
 			buildConfigurationList = A20907C0292D40F1003E0C74 /* Build configuration list for PBXProject "InternetSlowdown" */;
@@ -224,6 +315,7 @@
 				A20907C4292D40F1003E0C74 /* InternetSlowdown */,
 				A20907D5292D40F2003E0C74 /* InternetSlowdownTests */,
 				A20907DF292D40F2003E0C74 /* InternetSlowdownUITests */,
+				A209080029303ECB003E0C74 /* HelperTool */,
 			);
 		};
 /* End PBXProject section */
@@ -259,8 +351,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A20907F8292D61E4003E0C74 /* ISXPCClient.swift in Sources */,
+				A209080D29319326003E0C74 /* ISError.swift in Sources */,
+				A209080F29340950003E0C74 /* ISLogger.swift in Sources */,
 				A20907CB292D40F1003E0C74 /* ContentView.swift in Sources */,
 				A20907C9292D40F1003E0C74 /* InternetSlowdownApp.swift in Sources */,
+				A20907FA292D79DE003E0C74 /* AppController.swift in Sources */,
+				A209080B2931081E003E0C74 /* Authorization.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,6 +378,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A20907FD29303ECB003E0C74 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A209080429303ECB003E0C74 /* main.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -293,6 +398,11 @@
 			isa = PBXTargetDependency;
 			target = A20907C4292D40F1003E0C74 /* InternetSlowdown */;
 			targetProxy = A20907E1292D40F2003E0C74 /* PBXContainerItemProxy */;
+		};
+		A209080929303EE1003E0C74 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A209080029303ECB003E0C74 /* HelperTool */;
+			targetProxy = A209080829303EE1003E0C74 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -416,10 +526,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = InternetSlowdown/InternetSlowdown.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"InternetSlowdown/Preview Content\"";
+				DEVELOPMENT_TEAM = 6N6RG82H84;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -441,10 +553,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = InternetSlowdown/InternetSlowdown.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"InternetSlowdown/Preview Content\"";
+				DEVELOPMENT_TEAM = 6N6RG82H84;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -528,6 +642,28 @@
 			};
 			name = Release;
 		};
+		A209080629303ECB003E0C74 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6N6RG82H84;
+				ENABLE_HARDENED_RUNTIME = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		A209080729303ECB003E0C74 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6N6RG82H84;
+				ENABLE_HARDENED_RUNTIME = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -563,6 +699,15 @@
 			buildConfigurations = (
 				A20907F1292D40F2003E0C74 /* Debug */,
 				A20907F2292D40F2003E0C74 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A209080529303ECB003E0C74 /* Build configuration list for PBXNativeTarget "HelperTool" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A209080629303ECB003E0C74 /* Debug */,
+				A209080729303ECB003E0C74 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

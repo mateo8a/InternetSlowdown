@@ -8,12 +8,13 @@
 import SwiftUI
 
 struct ContentView: View {
+    @NSApplicationDelegateAdaptor private var appDelegate: AppController
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        VStack {            
+            Button("Start slowdown") {
+                appDelegate.startSlowdown()
+            }
         }
         .padding()
     }
