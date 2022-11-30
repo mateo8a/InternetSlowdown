@@ -12,7 +12,7 @@ struct Authorization {
     static let kCommandKeyAuthRightDefault = "authRightDefault"
     static let kCommandKeyAuthRightDesc    = "authRightDescription"
 
-    static let commandInfo: Dictionary = {
+    private static let commandInfo: Dictionary = {
         let AuthorizationRule: [NSString: NSString] = [
             "class": "user",
             "group": "admin",
@@ -34,7 +34,7 @@ struct Authorization {
         return sCommandInfo
     }()
     
-    static func enumerateRightsUsingBlock(block: (_ authRightName: String, _ authRightDefault: Dictionary<String, Any>, _ authRightDesc: String) throws -> Void) throws {
+    private static func enumerateRightsUsingBlock(block: (_ authRightName: String, _ authRightDefault: Dictionary<String, Any>, _ authRightDesc: String) throws -> Void) throws {
         try commandInfo.forEach {
             (key: String, value: [String: Any]) in
             
@@ -64,19 +64,26 @@ struct Authorization {
                     nil,
                     nil
                 )
-                print("Rights have been set up in the policy database")
+                print("Attempting to set up rights in the policy database")
             }
             
             guard authStatus == errAuthorizationSuccess else {
                 throw ISError.unableToSetupRights
             }
             print("Rights all set up")
-            #if DEBUG
-            var removedStatus: OSStatus = AuthorizationRightRemove(authRef, authRightName)
+        }
+    }
+    
+    #if DEBUG
+    static func removeAuthorizationRights(authRef: AuthorizationRef) throws {
+        try enumerateRightsUsingBlock {
+            (authRightName: String, authRightDefault: Dictionary<String, Any>, authRightDesc: String) in
+            let removedStatus: OSStatus = AuthorizationRightRemove(authRef, authRightName)
             guard (removedStatus == errAuthorizationSuccess) else {
                 throw ISError.unableToRemoveRights
             }
-            #endif
         }
+
     }
+    #endif
 }

@@ -10,4 +10,9 @@ import XCTest
 
 final class AuthorizationTests: XCTestCase {
     
+    func testCommand() {
+        var clientAuthRef: AuthorizationRef?
+        AuthorizationCreate(nil, nil, AuthorizationFlags(), &clientAuthRef)
+//        Authorization
+    }
 }

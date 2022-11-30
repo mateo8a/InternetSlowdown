@@ -19,4 +19,15 @@ class AppController: NSObject, NSApplicationDelegate {
     func startSlowdown() {
         
     }
+    
+    func applicationWillTerminate(_ notification: Notification) {
+    #if DEBUG
+        do {
+            try Authorization.removeAuthorizationRights(authRef: xpc.clientAuthRef!)
+        } catch {
+            ISLogger().errorError(with_message: "Error while removing rights from policy database", error: error)
+            return
+        }
+    #endif
+    }
 }

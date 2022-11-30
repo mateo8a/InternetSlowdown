@@ -26,7 +26,7 @@ class ISXPCClient {
         // Create authorization reference
         var resultCode: OSStatus = AuthorizationCreate(nil, nil, AuthorizationFlags(), &clientAuthRef)
         
-        guard (resultCode != errAuthorizationSuccess) else {
+        guard (resultCode == errAuthorizationSuccess) else {
             let error: CFString = SecCopyErrorMessageString(resultCode, nil)!
             throw ISError.initialAuthorization(error)
         }
@@ -34,7 +34,7 @@ class ISXPCClient {
         // Create external authorization reference
         resultCode = AuthorizationMakeExternalForm(clientAuthRef!, &authorization);
         
-        guard (resultCode != errAuthorizationSuccess) else {
+        guard (resultCode == errAuthorizationSuccess) else {
             let error: CFString = SecCopyErrorMessageString(resultCode, nil)!
             throw ISError.externalAuthCreation(error)
         }
@@ -56,7 +56,7 @@ class ISXPCClient {
             ISLogger().cfStringError(with_message: "External authorization creation failed with error", error: e)
             return
         } catch {
-            ISLogger().errorError(with_message: "Initial authorization failed with error", error: error)
+            ISLogger().errorError(with_message: "Authorization set up failed with error", error: error)
             return
         }
     }
