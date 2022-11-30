@@ -11,6 +11,7 @@ struct Authorization {
     static let kCommandKeyAuthRightName    = "authRightName"
     static let kCommandKeyAuthRightDefault = "authRightDefault"
     static let kCommandKeyAuthRightDesc    = "authRightDescription"
+    static let slowdownAuthRightName       = "com.mochoaco.InternetSlowdown.slowdown"
 
     private static let commandInfo: Dictionary = {
         let AuthorizationRule: [NSString: NSString] = [
@@ -26,7 +27,7 @@ struct Authorization {
         [
             "functionName()": // this needs to change once I know what method is called to interact with the OS
                 [
-                    kCommandKeyAuthRightName    : "com.mochoaco.InternetSlowdown.slowdown",
+                    kCommandKeyAuthRightName    : slowdownAuthRightName,
                     kCommandKeyAuthRightDefault : kAuthorizationRuleAuthenticateAsAdmin2MinTimeout,
                     kCommandKeyAuthRightDesc    : "InternetSlowdown is trying to ..."
                 ]

@@ -21,13 +21,14 @@ class AppController: NSObject, NSApplicationDelegate {
     }
     
     func applicationWillTerminate(_ notification: Notification) {
-    #if DEBUG
-        do {
-            try Authorization.removeAuthorizationRights(authRef: xpc.clientAuthRef!)
-        } catch {
-            ISLogger().errorError(with_message: "Error while removing rights from policy database", error: error)
-            return
-        }
-    #endif
+//    Uncomment when we want rights to be re-written to the policy database
+//    #if DEBUG
+//        do {
+//            try Authorization.removeAuthorizationRights(authRef: xpc.clientAuthRef!)
+//        } catch {
+//            ISLogger().errorError(with_message: "Error while removing rights from policy database", error: error)
+//            return
+//        }
+//    #endif
     }
 }
