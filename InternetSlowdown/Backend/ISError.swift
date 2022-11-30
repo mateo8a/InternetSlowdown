@@ -10,4 +10,6 @@ import Foundation
 enum ISError: Error {
     case initialAuthorization(CFString)
     case externalAuthCreation(CFString)
+    case noAuthorizationReference
+    case unableToSetupRights
 }

@@ -18,7 +18,7 @@ class ISXPCClient {
 //    var helperToolConnection: NSXPCConnection
     
     func setupAuthorization() throws {
-        // Do not create external authorization reference if there already is one
+        // Do not create external authorization reference if there is already one
         if authorizationExists(authorization) {
             return
         }
@@ -41,7 +41,11 @@ class ISXPCClient {
         print("Ext form ref:")
         print(authorization)
         
-        Authorization.setupAuthorizationRights(authRef: clientAuthRef)
+        // Set up authorization rights in the policy database
+        guard (clientAuthRef != nil) else {
+            throw ISError.noAuthorizationReference
+        }
+        try Authorization.setupAuthorizationRights(authRef: clientAuthRef!)
     }
     
     func connectToHelperTool() {
