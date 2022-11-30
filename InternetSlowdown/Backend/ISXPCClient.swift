@@ -26,7 +26,7 @@ class ISXPCClient {
         // Create authorization reference
         var resultCode: OSStatus = AuthorizationCreate(nil, nil, AuthorizationFlags(), &clientAuthRef)
         
-        if (resultCode != errAuthorizationSuccess) {
+        guard (resultCode != errAuthorizationSuccess) else {
             let error: CFString = SecCopyErrorMessageString(resultCode, nil)!
             throw ISError.initialAuthorization(error)
         }
@@ -34,12 +34,10 @@ class ISXPCClient {
         // Create external authorization reference
         resultCode = AuthorizationMakeExternalForm(clientAuthRef!, &authorization);
         
-        if (resultCode != errAuthorizationSuccess) {
+        guard (resultCode != errAuthorizationSuccess) else {
             let error: CFString = SecCopyErrorMessageString(resultCode, nil)!
             throw ISError.externalAuthCreation(error)
         }
-        print("Ext form ref:")
-        print(authorization)
         
         // Set up authorization rights in the policy database
         guard (clientAuthRef != nil) else {

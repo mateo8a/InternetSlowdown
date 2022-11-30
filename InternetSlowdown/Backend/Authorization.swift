@@ -24,9 +24,9 @@ struct Authorization {
         
         let sCommandInfo =
         [
-            "functionName()":
+            "functionName()": // this needs to change once I know what method is called to interact with the OS
                 [
-                    kCommandKeyAuthRightName    : "com.example.apple-samplecode.EBAS.readLicenseKey",
+                    kCommandKeyAuthRightName    : "com.mochoaco.InternetSlowdown.slowdown",
                     kCommandKeyAuthRightDefault : kAuthorizationRuleAuthenticateAsAdmin2MinTimeout,
                     kCommandKeyAuthRightDesc    : "InternetSlowdown is trying to ..."
                 ]
@@ -63,13 +63,20 @@ struct Authorization {
                     authRightDesc as CFString,
                     nil,
                     nil
-                );
+                )
+                print("Rights have been set up in the policy database")
             }
             
             guard authStatus == errAuthorizationSuccess else {
                 throw ISError.unableToSetupRights
             }
-            return
+            print("Rights all set up")
+            #if DEBUG
+            var removedStatus: OSStatus = AuthorizationRightRemove(authRef, authRightName)
+            guard (removedStatus == errAuthorizationSuccess) else {
+                throw ISError.unableToRemoveRights
+            }
+            #endif
         }
     }
 }

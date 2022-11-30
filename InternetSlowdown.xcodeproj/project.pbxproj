@@ -7,11 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A207EFCC2936E59A00F920C4 /* AuthorizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A207EFCB2936E59A00F920C4 /* AuthorizationTests.swift */; };
 		A20907C9292D40F1003E0C74 /* InternetSlowdownApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20907C8292D40F1003E0C74 /* InternetSlowdownApp.swift */; };
 		A20907CB292D40F1003E0C74 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20907CA292D40F1003E0C74 /* ContentView.swift */; };
 		A20907CD292D40F2003E0C74 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A20907CC292D40F2003E0C74 /* Assets.xcassets */; };
 		A20907D0292D40F2003E0C74 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A20907CF292D40F2003E0C74 /* Preview Assets.xcassets */; };
-		A20907DB292D40F2003E0C74 /* InternetSlowdownTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20907DA292D40F2003E0C74 /* InternetSlowdownTests.swift */; };
+		A20907DB292D40F2003E0C74 /* ISXPCClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20907DA292D40F2003E0C74 /* ISXPCClientTests.swift */; };
 		A20907E5292D40F2003E0C74 /* InternetSlowdownUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20907E4292D40F2003E0C74 /* InternetSlowdownUITests.swift */; };
 		A20907E7292D40F2003E0C74 /* InternetSlowdownUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20907E6292D40F2003E0C74 /* InternetSlowdownUITestsLaunchTests.swift */; };
 		A20907F8292D61E4003E0C74 /* ISXPCClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20907F7292D61E4003E0C74 /* ISXPCClient.swift */; };
@@ -59,6 +60,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A207EFCB2936E59A00F920C4 /* AuthorizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationTests.swift; sourceTree = "<group>"; };
 		A20907C5292D40F1003E0C74 /* InternetSlowdown.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InternetSlowdown.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A20907C8292D40F1003E0C74 /* InternetSlowdownApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternetSlowdownApp.swift; sourceTree = "<group>"; };
 		A20907CA292D40F1003E0C74 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -66,7 +68,7 @@
 		A20907CF292D40F2003E0C74 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A20907D1292D40F2003E0C74 /* InternetSlowdown.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = InternetSlowdown.entitlements; sourceTree = "<group>"; };
 		A20907D6292D40F2003E0C74 /* InternetSlowdownTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InternetSlowdownTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A20907DA292D40F2003E0C74 /* InternetSlowdownTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternetSlowdownTests.swift; sourceTree = "<group>"; };
+		A20907DA292D40F2003E0C74 /* ISXPCClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISXPCClientTests.swift; sourceTree = "<group>"; };
 		A20907E0292D40F2003E0C74 /* InternetSlowdownUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InternetSlowdownUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A20907E4292D40F2003E0C74 /* InternetSlowdownUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternetSlowdownUITests.swift; sourceTree = "<group>"; };
 		A20907E6292D40F2003E0C74 /* InternetSlowdownUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternetSlowdownUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -157,7 +159,8 @@
 		A20907D9292D40F2003E0C74 /* InternetSlowdownTests */ = {
 			isa = PBXGroup;
 			children = (
-				A20907DA292D40F2003E0C74 /* InternetSlowdownTests.swift */,
+				A20907DA292D40F2003E0C74 /* ISXPCClientTests.swift */,
+				A207EFCB2936E59A00F920C4 /* AuthorizationTests.swift */,
 			);
 			path = InternetSlowdownTests;
 			sourceTree = "<group>";
@@ -365,7 +368,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A20907DB292D40F2003E0C74 /* InternetSlowdownTests.swift in Sources */,
+				A20907DB292D40F2003E0C74 /* ISXPCClientTests.swift in Sources */,
+				A207EFCC2936E59A00F920C4 /* AuthorizationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

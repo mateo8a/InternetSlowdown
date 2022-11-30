@@ -12,4 +12,5 @@ enum ISError: Error {
     case externalAuthCreation(CFString)
     case noAuthorizationReference
     case unableToSetupRights
+    case unableToRemoveRights
 }
