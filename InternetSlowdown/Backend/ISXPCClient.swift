@@ -15,7 +15,7 @@ class ISXPCClient {
     
     var clientAuthRef: AuthorizationRef?
     var authorization = AuthorizationExternalForm()
-//    var helperToolConnection: NSXPCConnection
+    var helperToolConnection: NSXPCConnection?
     
     func setupAuthorization() throws {
         // Do not create external authorization reference if there is already one
@@ -46,7 +46,7 @@ class ISXPCClient {
         try Authorization.setupAuthorizationRights(authRef: clientAuthRef!)
     }
     
-    func connectToHelperTool() {
+    func setupAuthorizationWithErrors() {
         do {
             try setupAuthorization()
         } catch ISError.initialAuthorization(let e) {
@@ -59,6 +59,11 @@ class ISXPCClient {
             ISLogger().errorError(with_message: "Authorization set up failed with error", error: error)
             return
         }
+    }
+    
+    func connectToHelperTool() {
+        setupAuthorizationWithErrors()
+        
     }
     
     func authorizationExists(_ auth: AuthorizationExternalForm) -> Bool {
