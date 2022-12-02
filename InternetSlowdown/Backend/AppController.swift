@@ -13,7 +13,7 @@ class AppController: NSObject, NSApplicationDelegate {
     
     func applicationDidFinishLaunching(_ notification: Notification) {
         print("Running applicationDidFinishLaunching!")
-        xpc.connectToHelperTool()
+        Authorization.setupAuthorizationWithErrors()
     }
     
     func startSlowdown() {
@@ -24,7 +24,7 @@ class AppController: NSObject, NSApplicationDelegate {
 //    Uncomment when we want rights to be re-written to the policy database
 //    #if DEBUG
 //        do {
-//            try Authorization.removeAuthorizationRights(authRef: xpc.clientAuthRef!)
+//            try Authorization.removeAuthorizationRights(authRef: Authorization.clientAuthRef!)
 //        } catch {
 //            ISLogger().errorError(with_message: "Error while removing rights from policy database", error: error)
 //            return
