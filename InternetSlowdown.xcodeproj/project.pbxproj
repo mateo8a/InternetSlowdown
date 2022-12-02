@@ -10,7 +10,6 @@
 		A207EFCC2936E59A00F920C4 /* AuthorizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A207EFCB2936E59A00F920C4 /* AuthorizationTests.swift */; };
 		A20907C9292D40F1003E0C74 /* InternetSlowdownApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20907C8292D40F1003E0C74 /* InternetSlowdownApp.swift */; };
 		A20907CB292D40F1003E0C74 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20907CA292D40F1003E0C74 /* ContentView.swift */; };
-		A20907CD292D40F2003E0C74 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A20907CC292D40F2003E0C74 /* Assets.xcassets */; };
 		A20907D0292D40F2003E0C74 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A20907CF292D40F2003E0C74 /* Preview Assets.xcassets */; };
 		A20907DB292D40F2003E0C74 /* ISXPCClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20907DA292D40F2003E0C74 /* ISXPCClientTests.swift */; };
 		A20907E5292D40F2003E0C74 /* InternetSlowdownUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20907E4292D40F2003E0C74 /* InternetSlowdownUITests.swift */; };
@@ -21,7 +20,6 @@
 		A209080B2931081E003E0C74 /* Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = A209080A2931081E003E0C74 /* Authorization.swift */; };
 		A209080D29319326003E0C74 /* ISError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A209080C29319326003E0C74 /* ISError.swift */; };
 		A209080F29340950003E0C74 /* ISLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = A209080E29340950003E0C74 /* ISLogger.swift */; };
-		A249A98429396DBF007EAF0F /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A249A98329396DBF007EAF0F /* Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,18 +46,6 @@
 		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		A20907FF29303ECB003E0C74 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
 		A207EFCB2936E59A00F920C4 /* AuthorizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationTests.swift; sourceTree = "<group>"; };
 		A20907C5292D40F1003E0C74 /* InternetSlowdown.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InternetSlowdown.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -75,12 +61,13 @@
 		A20907E6292D40F2003E0C74 /* InternetSlowdownUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternetSlowdownUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		A20907F7292D61E4003E0C74 /* ISXPCClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISXPCClient.swift; sourceTree = "<group>"; };
 		A20907F9292D79DE003E0C74 /* AppController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppController.swift; sourceTree = "<group>"; };
-		A209080129303ECB003E0C74 /* HelperTool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = HelperTool; sourceTree = BUILT_PRODUCTS_DIR; };
+		A209080129303ECB003E0C74 /* com.mochoaco.InternetSlowdownd */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = com.mochoaco.InternetSlowdownd; sourceTree = BUILT_PRODUCTS_DIR; };
 		A209080329303ECB003E0C74 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		A209080A2931081E003E0C74 /* Authorization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authorization.swift; sourceTree = "<group>"; };
 		A209080C29319326003E0C74 /* ISError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISError.swift; sourceTree = "<group>"; };
 		A209080E29340950003E0C74 /* ISLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISLogger.swift; sourceTree = "<group>"; };
 		A249A98329396DBF007EAF0F /* Info.plist */ = {isa = PBXFileReference; explicitFileType = text.xml; path = Info.plist; sourceTree = "<group>"; };
+		A249A985293A12BC007EAF0F /* Info.plist */ = {isa = PBXFileReference; explicitFileType = text.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,7 +120,7 @@
 				A20907C5292D40F1003E0C74 /* InternetSlowdown.app */,
 				A20907D6292D40F2003E0C74 /* InternetSlowdownTests.xctest */,
 				A20907E0292D40F2003E0C74 /* InternetSlowdownUITests.xctest */,
-				A209080129303ECB003E0C74 /* HelperTool */,
+				A209080129303ECB003E0C74 /* com.mochoaco.InternetSlowdownd */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -201,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				A209080329303ECB003E0C74 /* main.swift */,
+				A249A985293A12BC007EAF0F /* Info.plist */,
 			);
 			path = HelperTool;
 			sourceTree = "<group>";
@@ -268,7 +256,6 @@
 			buildPhases = (
 				A20907FD29303ECB003E0C74 /* Sources */,
 				A20907FE29303ECB003E0C74 /* Frameworks */,
-				A20907FF29303ECB003E0C74 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -276,7 +263,7 @@
 			);
 			name = HelperTool;
 			productName = HelperTool;
-			productReference = A209080129303ECB003E0C74 /* HelperTool */;
+			productReference = A209080129303ECB003E0C74 /* com.mochoaco.InternetSlowdownd */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -332,8 +319,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A20907D0292D40F2003E0C74 /* Preview Assets.xcassets in Resources */,
-				A20907CD292D40F2003E0C74 /* Assets.xcassets in Resources */,
-				A249A98429396DBF007EAF0F /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -657,10 +642,14 @@
 		A209080629303ECB003E0C74 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CREATE_INFOPLIST_SECTION_IN_BINARY = YES;
 				DEVELOPMENT_TEAM = 6N6RG82H84;
 				ENABLE_HARDENED_RUNTIME = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = HelperTool/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mochoaco.InternetSlowdownd;
+				PRODUCT_NAME = com.mochoaco.InternetSlowdownd;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -668,10 +657,14 @@
 		A209080729303ECB003E0C74 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CREATE_INFOPLIST_SECTION_IN_BINARY = YES;
 				DEVELOPMENT_TEAM = 6N6RG82H84;
 				ENABLE_HARDENED_RUNTIME = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = HelperTool/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mochoaco.InternetSlowdownd;
+				PRODUCT_NAME = com.mochoaco.InternetSlowdownd;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
