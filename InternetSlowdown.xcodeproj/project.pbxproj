@@ -20,6 +20,7 @@
 		A209080B2931081E003E0C74 /* Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = A209080A2931081E003E0C74 /* Authorization.swift */; };
 		A209080D29319326003E0C74 /* ISError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A209080C29319326003E0C74 /* ISError.swift */; };
 		A209080F29340950003E0C74 /* ISLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = A209080E29340950003E0C74 /* ISLogger.swift */; };
+		A249A987293A215F007EAF0F /* com.mochoaco.InternetSlowdownd in CopyFiles */ = {isa = PBXBuildFile; fileRef = A209080129303ECB003E0C74 /* com.mochoaco.InternetSlowdownd */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,19 @@
 			remoteInfo = HelperTool;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A249A986293A2146007EAF0F /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/Library/LaunchServices;
+			dstSubfolderSpec = 1;
+			files = (
+				A249A987293A215F007EAF0F /* com.mochoaco.InternetSlowdownd in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		A207EFCB2936E59A00F920C4 /* AuthorizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationTests.swift; sourceTree = "<group>"; };
@@ -203,6 +217,7 @@
 				A20907C1292D40F1003E0C74 /* Sources */,
 				A20907C2292D40F1003E0C74 /* Frameworks */,
 				A20907C3292D40F1003E0C74 /* Resources */,
+				A249A986293A2146007EAF0F /* CopyFiles */,
 			);
 			buildRules = (
 			);
