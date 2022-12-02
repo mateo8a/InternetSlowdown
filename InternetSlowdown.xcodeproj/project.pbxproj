@@ -22,6 +22,9 @@
 		A209080F29340950003E0C74 /* ISLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = A209080E29340950003E0C74 /* ISLogger.swift */; };
 		A249A987293A215F007EAF0F /* com.mochoaco.InternetSlowdownd in CopyFiles */ = {isa = PBXBuildFile; fileRef = A209080129303ECB003E0C74 /* com.mochoaco.InternetSlowdownd */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		A249A988293A2282007EAF0F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A20907CC292D40F2003E0C74 /* Assets.xcassets */; };
+		A290D3E5293ABE980020FD94 /* HelperTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = A290D3E4293ABE980020FD94 /* HelperTool.swift */; };
+		A290D3E7293ABED40020FD94 /* HelperToolProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A290D3E6293ABED40020FD94 /* HelperToolProtocol.swift */; };
+		A290D3E9293ABEE50020FD94 /* XPCDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A290D3E8293ABEE50020FD94 /* XPCDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +87,9 @@
 		A249A98329396DBF007EAF0F /* Info.plist */ = {isa = PBXFileReference; explicitFileType = text.xml; path = Info.plist; sourceTree = "<group>"; };
 		A249A985293A12BC007EAF0F /* Info.plist */ = {isa = PBXFileReference; explicitFileType = text.xml; path = Info.plist; sourceTree = "<group>"; };
 		A249A989293A23A5007EAF0F /* launchd.plist */ = {isa = PBXFileReference; explicitFileType = text.xml; path = launchd.plist; sourceTree = "<group>"; };
+		A290D3E4293ABE980020FD94 /* HelperTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperTool.swift; sourceTree = "<group>"; };
+		A290D3E6293ABED40020FD94 /* HelperToolProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperToolProtocol.swift; sourceTree = "<group>"; };
+		A290D3E8293ABEE50020FD94 /* XPCDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XPCDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,6 +209,9 @@
 		A209080229303ECB003E0C74 /* HelperTool */ = {
 			isa = PBXGroup;
 			children = (
+				A290D3E4293ABE980020FD94 /* HelperTool.swift */,
+				A290D3E6293ABED40020FD94 /* HelperToolProtocol.swift */,
+				A290D3E8293ABEE50020FD94 /* XPCDelegate.swift */,
 				A209080329303ECB003E0C74 /* main.swift */,
 				A249A985293A12BC007EAF0F /* Info.plist */,
 				A249A989293A23A5007EAF0F /* launchd.plist */,
@@ -394,6 +403,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A290D3E9293ABEE50020FD94 /* XPCDelegate.swift in Sources */,
+				A290D3E7293ABED40020FD94 /* HelperToolProtocol.swift in Sources */,
+				A290D3E5293ABE980020FD94 /* HelperTool.swift in Sources */,
 				A209080429303ECB003E0C74 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
