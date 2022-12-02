@@ -21,6 +21,7 @@
 		A209080B2931081E003E0C74 /* Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = A209080A2931081E003E0C74 /* Authorization.swift */; };
 		A209080D29319326003E0C74 /* ISError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A209080C29319326003E0C74 /* ISError.swift */; };
 		A209080F29340950003E0C74 /* ISLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = A209080E29340950003E0C74 /* ISLogger.swift */; };
+		A249A98429396DBF007EAF0F /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A249A98329396DBF007EAF0F /* Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 		A209080A2931081E003E0C74 /* Authorization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authorization.swift; sourceTree = "<group>"; };
 		A209080C29319326003E0C74 /* ISError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISError.swift; sourceTree = "<group>"; };
 		A209080E29340950003E0C74 /* ISLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISLogger.swift; sourceTree = "<group>"; };
+		A249A98329396DBF007EAF0F /* Info.plist */ = {isa = PBXFileReference; explicitFileType = text.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 		A20907BC292D40F1003E0C74 = {
 			isa = PBXGroup;
 			children = (
+				A249A98329396DBF007EAF0F /* Info.plist */,
 				A20907C7292D40F1003E0C74 /* InternetSlowdown */,
 				A20907D9292D40F2003E0C74 /* InternetSlowdownTests */,
 				A20907E3292D40F2003E0C74 /* InternetSlowdownUITests */,
@@ -330,6 +333,7 @@
 			files = (
 				A20907D0292D40F2003E0C74 /* Preview Assets.xcassets in Resources */,
 				A20907CD292D40F2003E0C74 /* Assets.xcassets in Resources */,
+				A249A98429396DBF007EAF0F /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -530,6 +534,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = InternetSlowdown/InternetSlowdown.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development: mateo.ochoac@gmail.com (26UVZTQNJD)";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -537,7 +542,8 @@
 				DEVELOPMENT_ASSET_PATHS = "\"InternetSlowdown/Preview Content\"";
 				DEVELOPMENT_TEAM = 6N6RG82H84;
 				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -557,6 +563,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = InternetSlowdown/InternetSlowdown.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development: mateo.ochoac@gmail.com (26UVZTQNJD)";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -564,7 +571,8 @@
 				DEVELOPMENT_ASSET_PATHS = "\"InternetSlowdown/Preview Content\"";
 				DEVELOPMENT_TEAM = 6N6RG82H84;
 				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
