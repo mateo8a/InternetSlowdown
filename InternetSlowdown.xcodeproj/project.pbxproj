@@ -21,6 +21,7 @@
 		A209080D29319326003E0C74 /* ISError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A209080C29319326003E0C74 /* ISError.swift */; };
 		A209080F29340950003E0C74 /* ISLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = A209080E29340950003E0C74 /* ISLogger.swift */; };
 		A249A987293A215F007EAF0F /* com.mochoaco.InternetSlowdownd in CopyFiles */ = {isa = PBXBuildFile; fileRef = A209080129303ECB003E0C74 /* com.mochoaco.InternetSlowdownd */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		A249A988293A2282007EAF0F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A20907CC292D40F2003E0C74 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -333,6 +334,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A249A988293A2282007EAF0F /* Assets.xcassets in Resources */,
 				A20907D0292D40F2003E0C74 /* Preview Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
