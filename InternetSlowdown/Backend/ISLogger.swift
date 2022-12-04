@@ -11,11 +11,15 @@ import os.log
 struct ISLogger {
     static let logger = Logger.init(subsystem: "com.mochoaco.internetslowdown", category: "main")
     
-    func cfStringError(with_message message: String, error: CFString) {
+    static func cfStringError(with_message message: String, error: CFString) {
         ISLogger.logger.error("\(message): \(error)")
     }
     
-    func errorError<E: Error>(with_message message: String, error: E) {
+    static func errorError<E: Error>(with_message message: String, error: E) {
         ISLogger.logger.error("\(message): \(error)")
+    }
+    
+    static func warning(with_message message: String) {
+        ISLogger.logger.warning("\(message)")
     }
 }

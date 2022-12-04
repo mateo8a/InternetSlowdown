@@ -7,6 +7,6 @@
 
 import Foundation
 
-class HelperTool: HelperToolProtocol {
-    
+class HelperTool {
+    static let machServiceName = "com.mochoaco.InternetSlowdownd"
 }

@@ -10,7 +10,6 @@ import Security
 
 class ISXPCClient {
 
-    // First, set up authorization
     // Then, connect to privileged helper tool (the daemon)
     
     var clientAuthRef: AuthorizationRef?
@@ -18,6 +17,23 @@ class ISXPCClient {
     var helperToolConnection: NSXPCConnection?
     
     func connectToHelperTool() {
-        
+        if helperToolConnection == nil {
+            helperToolConnection = NSXPCConnection(machServiceName: HelperTool.machServiceName, options: NSXPCConnection.Options.privileged)
+
+            helperToolConnection?.remoteObjectInterface = NSXPCInterface(with: HelperToolProtocol.self)
+            helperToolConnection?.invalidationHandler = {
+                () -> Void in
+                ISLogger.warning(with_message: "Connection to helper tool was invalidated")
+                self.helperToolConnection = nil
+            }
+            
+            helperToolConnection?.interruptionHandler = {
+                () -> Void in
+                ISLogger.warning(with_message: "Connection to helper tool was interrupted")
+                self.connectToHelperTool()
+            }
+            
+            helperToolConnection?.resume()
+        }
     }
 }

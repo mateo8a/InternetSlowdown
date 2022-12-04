@@ -45,13 +45,13 @@ class Authorization {
         do {
             try setupAuthorization()
         } catch ISError.initialAuthorization(let e) {
-            ISLogger().cfStringError(with_message: "Initial authorization failed with error", error: e)
+            ISLogger.cfStringError(with_message: "Initial authorization failed with error", error: e)
             return
         } catch ISError.externalAuthCreation(let e) {
-            ISLogger().cfStringError(with_message: "External authorization creation failed with error", error: e)
+            ISLogger.cfStringError(with_message: "External authorization creation failed with error", error: e)
             return
         } catch {
-            ISLogger().errorError(with_message: "Authorization set up failed with error", error: error)
+            ISLogger.errorError(with_message: "Authorization set up failed with error", error: error)
             return
         }
     }

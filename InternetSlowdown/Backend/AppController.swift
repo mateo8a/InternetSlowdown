@@ -16,8 +16,9 @@ class AppController: NSObject, NSApplicationDelegate {
         Authorization.setupAuthorizationWithErrors()
     }
     
+    // This function is bound to the UI
     func startSlowdown() {
-        
+        xpc.connectToHelperTool()
     }
     
     func applicationWillTerminate(_ notification: Notification) {

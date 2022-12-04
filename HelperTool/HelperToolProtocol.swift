@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol HelperToolProtocol {
+@objc protocol HelperToolProtocol {
     
 }
