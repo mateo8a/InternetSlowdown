@@ -9,5 +9,7 @@
         <key>com.mochoaco.InternetSlowdownd</key>
         <true/>
     </dict>
+    <key>BundleProgram</key>
+    <string>Contents/Resources/com.mochoaco.InternetSlowdownd</string>
 </dict>
 </plist>

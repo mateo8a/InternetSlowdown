@@ -42,16 +42,16 @@ class ISXPCClient {
         }
         
         // Ensure that user has the rights to install the privileged helper tool
-        let privilegedRight = userHasRightToInstallPrivilegedTool()
-        guard (privilegedRight == errAuthorizationSuccess) else {
+        let hasRights = userHasRightToInstallPrivilegedTool()
+        guard (hasRights == errAuthorizationSuccess) else {
             ISLogger.warning(with_message: "User is not authorized to install privileged helper tool.")
             return
         }
         
         do {
-            try SMAppService.daemon(plistName: "Info.plist").register()
+            try SMAppService.daemon(plistName: "com.mochoaco.InternetSlowdownd.plist").register()
         } catch {
-            ISLogger.errorError(with_message: "Daemon could not be installed due to the following error:", error: error)
+            ISLogger.errorError(with_message: "Daemon could not be installed due to the following error: ", error: error)
         }
     }
     

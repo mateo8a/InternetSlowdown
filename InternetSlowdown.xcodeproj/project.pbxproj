@@ -28,6 +28,7 @@
 		A290D3F0293B80C10020FD94 /* HelperTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = A290D3E4293ABE980020FD94 /* HelperTool.swift */; };
 		A290D3F1293B80EC0020FD94 /* HelperToolProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A290D3E6293ABED40020FD94 /* HelperToolProtocol.swift */; };
 		A290D3F3293B81130020FD94 /* HelperToolExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A290D3F2293B81130020FD94 /* HelperToolExtension.swift */; };
+		A2A45764293EAB8B0043EC8C /* com.mochoaco.InternetSlowdownd.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = A249A989293A23A5007EAF0F /* com.mochoaco.InternetSlowdownd.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,10 +59,20 @@
 		A249A986293A2146007EAF0F /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+				A249A987293A215F007EAF0F /* com.mochoaco.InternetSlowdownd in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A2A45762293EAA7A0043EC8C /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
 			dstPath = Contents/Library/LaunchDaemons;
 			dstSubfolderSpec = 1;
 			files = (
-				A249A987293A215F007EAF0F /* com.mochoaco.InternetSlowdownd in CopyFiles */,
+				A2A45764293EAB8B0043EC8C /* com.mochoaco.InternetSlowdownd.plist in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,7 +100,7 @@
 		A209080E29340950003E0C74 /* ISLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISLogger.swift; sourceTree = "<group>"; };
 		A249A98329396DBF007EAF0F /* Info.plist */ = {isa = PBXFileReference; explicitFileType = text.xml; path = Info.plist; sourceTree = "<group>"; };
 		A249A985293A12BC007EAF0F /* Info.plist */ = {isa = PBXFileReference; explicitFileType = text.xml; path = Info.plist; sourceTree = "<group>"; };
-		A249A989293A23A5007EAF0F /* launchd.plist */ = {isa = PBXFileReference; explicitFileType = text.xml; path = launchd.plist; sourceTree = "<group>"; };
+		A249A989293A23A5007EAF0F /* com.mochoaco.InternetSlowdownd.plist */ = {isa = PBXFileReference; explicitFileType = text.xml; path = com.mochoaco.InternetSlowdownd.plist; sourceTree = "<group>"; };
 		A290D3E4293ABE980020FD94 /* HelperTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperTool.swift; sourceTree = "<group>"; };
 		A290D3E6293ABED40020FD94 /* HelperToolProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperToolProtocol.swift; sourceTree = "<group>"; };
 		A290D3E8293ABEE50020FD94 /* XPCDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XPCDelegate.swift; sourceTree = "<group>"; };
@@ -219,7 +230,7 @@
 				A290D3E6293ABED40020FD94 /* HelperToolProtocol.swift */,
 				A290D3E8293ABEE50020FD94 /* XPCDelegate.swift */,
 				A249A985293A12BC007EAF0F /* Info.plist */,
-				A249A989293A23A5007EAF0F /* launchd.plist */,
+				A249A989293A23A5007EAF0F /* com.mochoaco.InternetSlowdownd.plist */,
 			);
 			path = HelperTool;
 			sourceTree = "<group>";
@@ -235,6 +246,7 @@
 				A20907C2292D40F1003E0C74 /* Frameworks */,
 				A20907C3292D40F1003E0C74 /* Resources */,
 				A249A986293A2146007EAF0F /* CopyFiles */,
+				A2A45762293EAA7A0043EC8C /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -573,6 +585,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mochoaco.InternetSlowdown;
@@ -603,6 +616,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mochoaco.InternetSlowdown;
@@ -694,7 +708,7 @@
 					"-sectcreate",
 					__TEXT,
 					__launchd_plist,
-					"$(SRCROOT)/${TARGET_NAME}/launchd.plist",
+					"$(SRCROOT)/${TARGET_NAME}/com.mochoaco.InternetSlowdownd.plist",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mochoaco.InternetSlowdownd;
 				PRODUCT_NAME = com.mochoaco.InternetSlowdownd;
@@ -716,7 +730,7 @@
 					"-sectcreate",
 					__TEXT,
 					__launchd_plist,
-					"$(SRCROOT)/${TARGET_NAME}/launchd.plist",
+					"$(SRCROOT)/${TARGET_NAME}/com.mochoaco.InternetSlowdownd.plist",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mochoaco.InternetSlowdownd;
 				PRODUCT_NAME = com.mochoaco.InternetSlowdownd;
