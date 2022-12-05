@@ -7,13 +7,10 @@
 
 import Foundation
 import Security
+import ServiceManagement
 
 class ISXPCClient {
-
-    // Then, connect to privileged helper tool (the daemon)
     
-    var clientAuthRef: AuthorizationRef?
-    var authorization = AuthorizationExternalForm()
     var helperToolConnection: NSXPCConnection?
     
     func connectToHelperTool() {
@@ -23,17 +20,58 @@ class ISXPCClient {
             helperToolConnection?.remoteObjectInterface = NSXPCInterface(with: HelperToolProtocol.self)
             helperToolConnection?.invalidationHandler = {
                 () -> Void in
-                ISLogger.warning(with_message: "Connection to helper tool was invalidated")
+                ISLogger.warning(with_message: "Connection to helper tool was invalidated. Setting connection to nil.")
                 self.helperToolConnection = nil
             }
             
             helperToolConnection?.interruptionHandler = {
                 () -> Void in
-                ISLogger.warning(with_message: "Connection to helper tool was interrupted")
+                ISLogger.warning(with_message: "Connection to helper tool was interrupted. Retrying connection...")
                 self.connectToHelperTool()
             }
             
             helperToolConnection?.resume()
         }
+    }
+    
+    func installHelperTool() {
+        // Check that the rights are written in the policy database
+        let areRightsSetUp: Bool = Authorization.areRightsSetUp()
+        if !areRightsSetUp {
+            Authorization.setupAuthorizationWithErrors()
+        }
+        
+        // Ensure that user has the rights to install the privileged helper tool
+        let privilegedRight = userHasRightToInstallPrivilegedTool()
+        guard (privilegedRight == errAuthorizationSuccess) else {
+            ISLogger.warning(with_message: "User is not authorized to install privileged helper tool.")
+            return
+        }
+        
+        do {
+            try SMAppService.daemon(plistName: "Info.plist").register()
+        } catch {
+            ISLogger.errorError(with_message: "Daemon could not be installed due to the following error:", error: error)
+        }
+    }
+    
+    private func userHasRightToInstallPrivilegedTool() -> OSStatus {
+        let blessRight = AuthorizationItem(name: kSMRightBlessPrivilegedHelper, valueLength: 0, value: nil, flags: 0)
+        let slowdownRight = AuthorizationItem(name: "com.mochoaco.InternetSlowdown.slowdown", valueLength: 0, value: nil, flags: 0)
+        
+        var rights = [blessRight, slowdownRight]
+        var authRights = AuthorizationRights(count: 2, items: &rights)
+        var myFlags: AuthorizationFlags = [.interactionAllowed, .extendRights]
+        var authEnv = AuthorizationEnvironment()
+        
+        let status: OSStatus = AuthorizationCopyRights(
+                                               Authorization.clientAuthRef!,
+                                               &authRights,
+                                               &authEnv,
+                                               myFlags,
+                                               nil
+                                               )
+        
+        return status
     }
 }

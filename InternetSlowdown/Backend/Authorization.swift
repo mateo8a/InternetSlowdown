@@ -18,20 +18,22 @@ class Authorization {
     
     static func setupAuthorization() throws {
         
-        // Create authorization reference
-        var resultCode: OSStatus = AuthorizationCreate(nil, nil, AuthorizationFlags(), &clientAuthRef)
-        
-        guard (resultCode == errAuthorizationSuccess) else {
-            let error: CFString = SecCopyErrorMessageString(resultCode, nil)!
-            throw ISError.initialAuthorization(error)
-        }
-        
-        // Create external authorization reference
-        resultCode = AuthorizationMakeExternalForm(clientAuthRef!, &authorization);
-        
-        guard (resultCode == errAuthorizationSuccess) else {
-            let error: CFString = SecCopyErrorMessageString(resultCode, nil)!
-            throw ISError.externalAuthCreation(error)
+        if (clientAuthRef == nil || !authorizationExists(authorization)) {
+            // Create authorization reference
+            var resultCode: OSStatus = AuthorizationCreate(nil, nil, AuthorizationFlags(), &clientAuthRef)
+            
+            guard (resultCode == errAuthorizationSuccess) else {
+                let error: CFString = SecCopyErrorMessageString(resultCode, nil)!
+                throw ISError.initialAuthorization(error)
+            }
+            
+            // Create external authorization reference
+            resultCode = AuthorizationMakeExternalForm(clientAuthRef!, &authorization);
+            
+            guard (resultCode == errAuthorizationSuccess) else {
+                let error: CFString = SecCopyErrorMessageString(resultCode, nil)!
+                throw ISError.externalAuthCreation(error)
+            }
         }
         
         // Set up authorization rights in the policy database
@@ -56,7 +58,7 @@ class Authorization {
         }
     }
     
-    static func authorizationExists(_ auth: AuthorizationExternalForm) -> Bool {
+    private static func authorizationExists(_ auth: AuthorizationExternalForm) -> Bool {
         let authBytesAsArray: [UInt8] = {
             withUnsafeBytes(of: auth) { buf in
                 return [UInt8](buf)
@@ -129,6 +131,25 @@ class Authorization {
             }
             print("Rights all set up")
         }
+    }
+    
+    static func areRightsSetUp() -> Bool {
+        var rightsSetUp: Bool?
+        do {
+            try enumerateRightsUsingBlock {
+                (authRightName: String, authRightDefault: Dictionary<String, Any>, authRightDesc: String) in
+                
+                var authStatus: OSStatus
+                authStatus = AuthorizationRightGet(authRightName, nil)
+                if authStatus == errAuthorizationDenied {
+                    rightsSetUp = false
+                }
+            }
+            if rightsSetUp == nil {
+                rightsSetUp = true
+            }
+        } catch {}
+        return rightsSetUp!
     }
     
     #if DEBUG

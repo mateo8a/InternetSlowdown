@@ -58,7 +58,7 @@
 		A249A986293A2146007EAF0F /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = Contents/Library/LaunchServices;
+			dstPath = Contents/Library/LaunchDaemons;
 			dstSubfolderSpec = 1;
 			files = (
 				A249A987293A215F007EAF0F /* com.mochoaco.InternetSlowdownd in CopyFiles */,
