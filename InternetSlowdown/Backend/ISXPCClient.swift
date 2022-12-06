@@ -65,22 +65,33 @@ class ISXPCClient {
     }
     
     private func userHasRightToInstallPrivilegedTool() -> OSStatus {
-        let blessRight = AuthorizationItem(name: (kSMRightBlessPrivilegedHelper as NSString).utf8String!, valueLength: 0, value: nil, flags: 0)
-        let slowdownRight = AuthorizationItem(name: ("com.mochoaco.InternetSlowdown.slowdown" as NSString).utf8String!, valueLength: 0, value: nil, flags: 0)
+        var status: OSStatus? = nil
+        
+        var blessRightName = (kSMRightBlessPrivilegedHelper as NSString).utf8String!
+        let blessRight = AuthorizationItem(name: blessRightName, valueLength: 0, value: nil, flags: 0)
+        
+        var slowdownRightName = ("com.mochoaco.InternetSlowdown.slowdown" as NSString).utf8String!
+        let slowdownRight = AuthorizationItem(name: slowdownRightName, valueLength: 0, value: nil, flags: 0)
         
         var rights = [blessRight, slowdownRight]
-        var authRights = AuthorizationRights(count: 2, items: &rights)
-        let myFlags: AuthorizationFlags = [.interactionAllowed, .extendRights]
-        var authEnv = AuthorizationEnvironment()
+        var authRights = AuthorizationRights()
         
-        let status: OSStatus = AuthorizationCopyRights(
-                                               Authorization.clientAuthRef!,
-                                               &authRights,
-                                               &authEnv,
-                                               myFlags,
-                                               nil
-                                               )
-        
-        return status
+        rights.withUnsafeMutableBufferPointer { rightsBuff in
+            var rightsPtr = UnsafeMutablePointer<AuthorizationItem>(mutating: rightsBuff.baseAddress!)
+            authRights = AuthorizationRights(count: 2, items: rightsPtr)
+            
+            let myFlags: AuthorizationFlags = [.interactionAllowed, .extendRights]
+            var authEnv = AuthorizationEnvironment()
+            
+            status = AuthorizationCopyRights(
+                                           Authorization.clientAuthRef!,
+                                           &authRights,
+                                           &authEnv,
+                                           myFlags,
+                                           nil
+                                           )
+        }
+                
+        return status!
     }
 }

@@ -18,7 +18,9 @@ extension HelperTool {
             ISLogger.logger.error("Failed to create authorization form from external auth form with error: \(error)")
             return false
         }
-        let right = AuthorizationItem(name: (functionName as NSString).utf8String!, valueLength: 0, value: nil, flags: 0)
+        
+        var rightName = (functionName as NSString).utf8String!
+        let right = AuthorizationItem(name: rightName, valueLength: 0, value: nil, flags: 0)
         return true
     }
 }
