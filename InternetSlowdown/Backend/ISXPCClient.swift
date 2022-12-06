@@ -56,17 +56,21 @@ class ISXPCClient {
             ISLogger.warning(with_message: "User is not authorized to install privileged helper tool.")
             return
         }
-        
-        do {
-            try SMAppService.daemon(plistName: "com.mochoaco.InternetSlowdownd.plist").register()
-        } catch {
-            ISLogger.errorError(with_message: "Daemon could not be installed due to the following error: ", error: error)
+        if #available(macOS 13, *) {
+            do {
+                try SMAppService.daemon(plistName: "com.mochoaco.InternetSlowdownd.plist").register()
+            } catch {
+                ISLogger.errorError(with_message: "Daemon could not be installed due to the following error: ", error: error)
+            }
+        } else {
+            
         }
     }
     
     private func userHasRightToInstallPrivilegedTool() -> OSStatus {
         var status: OSStatus? = nil
         
+        // Declaring the name as follows was informed by: https://github.com/confirmedcode/Confirmed-Mac/blob/master/ConfirmedProxy/HelperAuthorization.swift
         var blessRightName = (kSMRightBlessPrivilegedHelper as NSString).utf8String!
         let blessRight = AuthorizationItem(name: blessRightName, valueLength: 0, value: nil, flags: 0)
         
@@ -76,6 +80,7 @@ class ISXPCClient {
         var rights = [blessRight, slowdownRight]
         var authRights = AuthorizationRights()
         
+        // The following was informed by https://developer.apple.com/forums/thread/132252
         rights.withUnsafeMutableBufferPointer { rightsBuff in
             var rightsPtr = UnsafeMutablePointer<AuthorizationItem>(mutating: rightsBuff.baseAddress!)
             authRights = AuthorizationRights(count: 2, items: rightsPtr)

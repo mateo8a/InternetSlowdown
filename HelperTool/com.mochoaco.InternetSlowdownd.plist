@@ -10,6 +10,6 @@
         <true/>
     </dict>
     <key>BundleProgram</key>
-    <string>Contents/Resources/com.mochoaco.InternetSlowdownd</string>
+    <string>Contents/Library/LaunchServices/com.mochoaco.InternetSlowdownd</string>
 </dict>
 </plist>
