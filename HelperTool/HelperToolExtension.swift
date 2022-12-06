@@ -27,7 +27,7 @@ extension HelperTool {
 
 extension HelperTool: HelperToolProtocol {
     func startSlowdown(auth: UnsafePointer<AuthorizationExternalForm>, functionName: String) {
-        print("starting slowdown...")
+        print("Starting slowdown from the daemon side...")
         let isAuthorized = checkAuthorization(auth: auth, functionName: functionName)
         guard isAuthorized else {
             ISLogger.logger.error("User is not authorized to start slowdown.")

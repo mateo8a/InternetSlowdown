@@ -23,6 +23,7 @@ class AppController: NSObject, NSApplicationDelegate {
     // This function is bound to the UI
     func startSlowdown() {
         xpc.connectToHelperTool()
+        xpc.startSlowdown()
     }
     
     func applicationWillTerminate(_ notification: Notification) {

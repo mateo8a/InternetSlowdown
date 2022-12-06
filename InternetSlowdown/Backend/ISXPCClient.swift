@@ -60,10 +60,16 @@ class ISXPCClient {
             do {
                 try SMAppService.daemon(plistName: "com.mochoaco.InternetSlowdownd.plist").register()
             } catch {
-                ISLogger.errorError(with_message: "Daemon could not be installed due to the following error: ", error: error)
+                ISLogger.errorError(with_message: "SMAppService could not install daemon due to the following error: ", error: error)
             }
         } else {
-            
+            var error: Unmanaged<CFError>?
+            let installationStatus = SMJobBless(kSMDomainSystemLaunchd, "com.mochoaco.InternetSlowdownd" as CFString, Authorization.clientAuthRef!, &error)
+            if !installationStatus {
+                ISLogger.logger.error("SMJobBless failed with error: \(error!.takeUnretainedValue())")
+            } else {
+                ISLogger.logger.info("SMJobBless installed the daemon successfully!")
+            }
         }
     }
     
