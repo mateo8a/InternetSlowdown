@@ -12,7 +12,7 @@ class AppController: NSObject, NSApplicationDelegate {
     var xpc = ISXPCClient()
     
     func applicationDidFinishLaunching(_ notification: Notification) {
-        print("Running applicationDidFinishLaunching!")
+        ISLogger.logger.info("Running applicationDidFinishLaunching!")
         Authorization.setupAuthorizationWithErrors()
     }
     

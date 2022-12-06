@@ -29,7 +29,7 @@ class ISXPCClient {
                 ISLogger.warning(with_message: "Connection to helper tool was interrupted. Retrying connection...")
                 self.connectToHelperTool()
             }
-            
+            ISLogger.logger.info("Connection to helper tool successful: \(self.helperToolConnection.debugDescription)")
             helperToolConnection?.resume()
         }
     }
@@ -40,6 +40,7 @@ class ISXPCClient {
             ISLogger.errorError(with_message: "Could not get the remote object via XPC due to the following error: ", error: error)
         } as? HelperToolProtocol
         
+        ISLogger.logger.info("Client XPC's slowdown called. Daemon is: \(daemon.debugDescription)")
         daemon?.startSlowdown(auth: &Authorization.authorization, functionName: #function)
     }
     

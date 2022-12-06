@@ -7,7 +7,7 @@
 
 import Foundation
 
-// Implement this here because HelperTool.swift is also part of the main app target
+// Implement this here because file HelperTool.swift is also part of the main app target
 extension HelperTool {
     func checkAuthorization(auth: UnsafePointer<AuthorizationExternalForm>, functionName: String) -> Bool {
         var authRef: AuthorizationRef?
@@ -27,7 +27,7 @@ extension HelperTool {
 
 extension HelperTool: HelperToolProtocol {
     func startSlowdown(auth: UnsafePointer<AuthorizationExternalForm>, functionName: String) {
-        print("Starting slowdown from the daemon side...")
+        ISLogger.logger.info("Starting slowdown from the daemon side...")
         let isAuthorized = checkAuthorization(auth: auth, functionName: functionName)
         guard isAuthorized else {
             ISLogger.logger.error("User is not authorized to start slowdown.")
