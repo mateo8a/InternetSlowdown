@@ -40,7 +40,7 @@ class ISXPCClient {
             ISLogger.errorError(with_message: "Could not get the remote object via XPC due to the following error: ", error: error)
         } as? HelperToolProtocol
         
-        daemon?.startSlowdown()
+        daemon?.startSlowdown(auth: &Authorization.authorization, functionName: #function)
     }
     
     func installHelperTool() {
@@ -65,12 +65,12 @@ class ISXPCClient {
     }
     
     private func userHasRightToInstallPrivilegedTool() -> OSStatus {
-        let blessRight = AuthorizationItem(name: kSMRightBlessPrivilegedHelper, valueLength: 0, value: nil, flags: 0)
-        let slowdownRight = AuthorizationItem(name: "com.mochoaco.InternetSlowdown.slowdown", valueLength: 0, value: nil, flags: 0)
+        let blessRight = AuthorizationItem(name: (kSMRightBlessPrivilegedHelper as NSString).utf8String!, valueLength: 0, value: nil, flags: 0)
+        let slowdownRight = AuthorizationItem(name: ("com.mochoaco.InternetSlowdown.slowdown" as NSString).utf8String!, valueLength: 0, value: nil, flags: 0)
         
         var rights = [blessRight, slowdownRight]
         var authRights = AuthorizationRights(count: 2, items: &rights)
-        var myFlags: AuthorizationFlags = [.interactionAllowed, .extendRights]
+        let myFlags: AuthorizationFlags = [.interactionAllowed, .extendRights]
         var authEnv = AuthorizationEnvironment()
         
         let status: OSStatus = AuthorizationCopyRights(

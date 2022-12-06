@@ -29,6 +29,7 @@
 		A290D3F1293B80EC0020FD94 /* HelperToolProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A290D3E6293ABED40020FD94 /* HelperToolProtocol.swift */; };
 		A290D3F3293B81130020FD94 /* HelperToolExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A290D3F2293B81130020FD94 /* HelperToolExtension.swift */; };
 		A2A45764293EAB8B0043EC8C /* com.mochoaco.InternetSlowdownd.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = A249A989293A23A5007EAF0F /* com.mochoaco.InternetSlowdownd.plist */; };
+		A2A45765293EC62B0043EC8C /* ISLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = A209080E29340950003E0C74 /* ISLogger.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -425,6 +426,7 @@
 				A290D3F3293B81130020FD94 /* HelperToolExtension.swift in Sources */,
 				A290D3E9293ABEE50020FD94 /* XPCDelegate.swift in Sources */,
 				A290D3E7293ABED40020FD94 /* HelperToolProtocol.swift in Sources */,
+				A2A45765293EC62B0043EC8C /* ISLogger.swift in Sources */,
 				A290D3E5293ABE980020FD94 /* HelperTool.swift in Sources */,
 				A209080429303ECB003E0C74 /* main.swift in Sources */,
 			);

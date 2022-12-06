@@ -83,11 +83,11 @@ class Authorization {
         
         let sCommandInfo =
         [
-            "functionName()": // this needs to change once I know what method is called to interact with the OS
+            "startSlowdown()":
                 [
                     kCommandKeyAuthRightName    : slowdownAuthRightName,
                     kCommandKeyAuthRightDefault : kAuthorizationRuleAuthenticateAsAdmin2MinTimeout,
-                    kCommandKeyAuthRightDesc    : "InternetSlowdown is trying to ..."
+                    kCommandKeyAuthRightDesc    : "Start slowdown"
                 ]
         ]
         return sCommandInfo

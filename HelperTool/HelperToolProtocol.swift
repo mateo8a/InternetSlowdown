@@ -8,5 +8,5 @@
 import Foundation
 
 @objc protocol HelperToolProtocol {
-    func startSlowdown()
+    func startSlowdown(auth: UnsafePointer<AuthorizationExternalForm>, functionName: String)
 }
