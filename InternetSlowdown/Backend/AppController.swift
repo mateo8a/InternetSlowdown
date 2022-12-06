@@ -16,6 +16,10 @@ class AppController: NSObject, NSApplicationDelegate {
         Authorization.setupAuthorizationWithErrors()
     }
     
+    func installHelperTool() {
+        xpc.installHelperTool()
+    }
+    
     // This function is bound to the UI
     func startSlowdown() {
         xpc.connectToHelperTool()

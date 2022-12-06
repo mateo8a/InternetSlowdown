@@ -34,6 +34,15 @@ class ISXPCClient {
         }
     }
     
+    func startSlowdown() {
+        let daemon = helperToolConnection?.remoteObjectProxyWithErrorHandler {
+            error in
+            ISLogger.errorError(with_message: "Could not get the remote object via XPC due to the following error: ", error: error)
+        } as? HelperToolProtocol
+        
+        daemon?.startSlowdown()
+    }
+    
     func installHelperTool() {
         // Check that the rights are written in the policy database
         let areRightsSetUp: Bool = Authorization.areRightsSetUp()

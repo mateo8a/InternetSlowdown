@@ -9,5 +9,7 @@ import Foundation
 
 // Implement this here because HelperTool.swift is also part of the main app target
 extension HelperTool: HelperToolProtocol {
-    
+    func startSlowdown() {
+        print("starting slowdown...")
+    }
 }

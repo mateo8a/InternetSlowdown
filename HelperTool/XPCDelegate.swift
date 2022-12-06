@@ -8,5 +8,11 @@
 import Foundation
 
 class XPCDelegate: NSObject, NSXPCListenerDelegate {
-    
+    func listener(_ listener: NSXPCListener, shouldAcceptNewConnection newConnection: NSXPCConnection) -> Bool {
+        let exportedObject = HelperTool()
+        newConnection.exportedInterface = NSXPCInterface(with: HelperToolProtocol.self)
+        newConnection.exportedObject = exportedObject
+        newConnection.resume()
+        return true
+    }
 }
