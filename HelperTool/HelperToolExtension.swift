@@ -10,6 +10,7 @@ import Foundation
 // Implement this here because file HelperTool.swift is also part of the main app target
 extension HelperTool {
     func checkAuthorization(auth: UnsafePointer<AuthorizationExternalForm>, functionName: String) -> Bool {
+        var status: OSStatus? = nil
         var authRef: AuthorizationRef?
         let resultCode = AuthorizationCreateFromExternalForm(auth, &authRef)
         
@@ -19,9 +20,25 @@ extension HelperTool {
             return false
         }
         
+        var authRights = AuthorizationRights()
         var rightName = (functionName as NSString).utf8String!
-        let right = AuthorizationItem(name: rightName, valueLength: 0, value: nil, flags: 0)
-        return true
+        var right = [AuthorizationItem(name: rightName, valueLength: 0, value: nil, flags: 0)]
+        right.withUnsafeMutableBufferPointer { rightsBuff in
+            var rightsPtr = UnsafeMutablePointer<AuthorizationItem>(mutating: rightsBuff.baseAddress!)
+            authRights = AuthorizationRights(count: 1, items: rightsPtr)
+            
+            let myFlags: AuthorizationFlags = [.interactionAllowed, .extendRights]
+            var authEnv = AuthorizationEnvironment()
+            
+            status = AuthorizationCopyRights(
+                                           authRef!,
+                                           &authRights,
+                                           &authEnv,
+                                           myFlags,
+                                           nil
+                                           )
+        }
+        return status == errAuthorizationSuccess
     }
 }
 
