@@ -17,12 +17,11 @@ class AppController: NSObject, NSApplicationDelegate {
     }
     
     func installHelperTool() {
-        xpc.installHelperTool()
+        HelperTool.installHelperTool()
     }
     
     // This function is bound to the UI
     func startSlowdown() {
-        xpc.connectToHelperTool()
         xpc.startSlowdown()
     }
     

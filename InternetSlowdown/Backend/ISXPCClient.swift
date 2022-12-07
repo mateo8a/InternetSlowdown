@@ -6,8 +6,6 @@
 //
 
 import Foundation
-import Security
-import ServiceManagement
 
 class ISXPCClient {
     
@@ -29,81 +27,22 @@ class ISXPCClient {
                 ISLogger.warning(with_message: "Connection to helper tool was interrupted. Retrying connection...")
                 self.connectToHelperTool()
             }
-            ISLogger.logger.info("Connection to helper tool successful: \(self.helperToolConnection.debugDescription)")
+            ISLogger.logger.info("Connected to: \(self.helperToolConnection.debugDescription)")
             helperToolConnection?.resume()
         }
     }
     
     func startSlowdown() {
+        // First, connect to the helper tool
+        connectToHelperTool()
+        
+        // Then, obtain the remote object and execute desired method
         let daemon = helperToolConnection?.remoteObjectProxyWithErrorHandler {
             error in
-            ISLogger.errorError(with_message: "Could not get the remote object via XPC due to the following error: ", error: error)
+            ISLogger.errorError(with_message: "Error raised by remote object proxy during slowdown: ", error: error)
         } as? HelperToolProtocol
         
         ISLogger.logger.info("Client XPC's slowdown called. Daemon is: \(daemon.debugDescription)")
         daemon?.startSlowdown(auth: &Authorization.authorization, functionName: #function)
-    }
-    
-    func installHelperTool() {
-        // Check that the rights are written in the policy database
-        let areRightsSetUp: Bool = Authorization.areRightsSetUp()
-        if !areRightsSetUp {
-            Authorization.setupAuthorizationWithErrors()
-        }
-        
-        // Ensure that user has the rights to install the privileged helper tool
-        let hasRights = userHasRightToInstallPrivilegedTool()
-        guard (hasRights == errAuthorizationSuccess) else {
-            ISLogger.warning(with_message: "User is not authorized to install privileged helper tool.")
-            return
-        }
-        if #available(macOS 13, *) {
-            do {
-                try SMAppService.daemon(plistName: "com.mochoaco.InternetSlowdownd.plist").register()
-            } catch {
-                ISLogger.errorError(with_message: "SMAppService could not install daemon due to the following error: ", error: error)
-            }
-        } else {
-            var error: Unmanaged<CFError>?
-            let installationStatus = SMJobBless(kSMDomainSystemLaunchd, "com.mochoaco.InternetSlowdownd" as CFString, Authorization.clientAuthRef!, &error)
-            if !installationStatus {
-                ISLogger.logger.error("SMJobBless failed with error: \(error!.takeUnretainedValue())")
-            } else {
-                ISLogger.logger.info("SMJobBless installed the daemon successfully!")
-            }
-        }
-    }
-    
-    private func userHasRightToInstallPrivilegedTool() -> OSStatus {
-        var status: OSStatus? = nil
-        
-        // Declaring the name as follows was informed by: https://github.com/confirmedcode/Confirmed-Mac/blob/master/ConfirmedProxy/HelperAuthorization.swift
-        var blessRightName = (kSMRightBlessPrivilegedHelper as NSString).utf8String!
-        let blessRight = AuthorizationItem(name: blessRightName, valueLength: 0, value: nil, flags: 0)
-        
-        var slowdownRightName = ("com.mochoaco.InternetSlowdown.slowdown" as NSString).utf8String!
-        let slowdownRight = AuthorizationItem(name: slowdownRightName, valueLength: 0, value: nil, flags: 0)
-        
-        var rights = [blessRight, slowdownRight]
-        var authRights = AuthorizationRights()
-        
-        // The following was informed by https://developer.apple.com/forums/thread/132252
-        rights.withUnsafeMutableBufferPointer { rightsBuff in
-            var rightsPtr = UnsafeMutablePointer<AuthorizationItem>(mutating: rightsBuff.baseAddress!)
-            authRights = AuthorizationRights(count: 2, items: rightsPtr)
-            
-            let myFlags: AuthorizationFlags = [.interactionAllowed, .extendRights]
-            var authEnv = AuthorizationEnvironment()
-            
-            status = AuthorizationCopyRights(
-                                           Authorization.clientAuthRef!,
-                                           &authRights,
-                                           &authEnv,
-                                           myFlags,
-                                           nil
-                                           )
-        }
-                
-        return status!
     }
 }

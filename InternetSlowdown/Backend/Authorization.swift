@@ -6,20 +6,17 @@
 //
 
 import Foundation
+import ServiceManagement
 
 class Authorization {
-    static let kCommandKeyAuthRightName    = "authRightName"
-    static let kCommandKeyAuthRightDefault = "authRightDefault"
-    static let kCommandKeyAuthRightDesc    = "authRightDescription"
-    static let slowdownAuthRightName       = "com.mochoaco.InternetSlowdown.slowdown"
-
     static var clientAuthRef: AuthorizationRef?
     static var authorization = AuthorizationExternalForm()
     
+    // Sets up both the AuthorizationRef and the AuthorizationExternalForm:
     static func setupAuthorization() throws {
-        
         if (clientAuthRef == nil || !authorizationExists(authorization)) {
-            // Create authorization reference
+            
+            // Create authorization reference (AuthorizationRef)
             var resultCode: OSStatus = AuthorizationCreate(nil, nil, AuthorizationFlags(), &clientAuthRef)
             
             guard (resultCode == errAuthorizationSuccess) else {
@@ -27,7 +24,7 @@ class Authorization {
                 throw ISError.initialAuthorization(error)
             }
             
-            // Create external authorization reference
+            // Create external authorization reference (AuthorizationExternalForm)
             resultCode = AuthorizationMakeExternalForm(clientAuthRef!, &authorization);
             
             guard (resultCode == errAuthorizationSuccess) else {
@@ -72,6 +69,48 @@ class Authorization {
         }
         return false
     }
+}
+
+extension Authorization {
+    static func userHasRightToInstallPrivilegedTool() -> OSStatus {
+        var status: OSStatus? = nil
+        
+        // Declaring the name as follows was informed by: https://github.com/confirmedcode/Confirmed-Mac/blob/master/ConfirmedProxy/HelperAuthorization.swift
+        var blessRightName = (kSMRightBlessPrivilegedHelper as NSString).utf8String!
+        let blessRight = AuthorizationItem(name: blessRightName, valueLength: 0, value: nil, flags: 0)
+        
+        var slowdownRightName = ("com.mochoaco.InternetSlowdown.slowdown" as NSString).utf8String!
+        let slowdownRight = AuthorizationItem(name: slowdownRightName, valueLength: 0, value: nil, flags: 0)
+        
+        var rights = [blessRight, slowdownRight]
+        var authRights = AuthorizationRights()
+        
+        // The following was informed by https://developer.apple.com/forums/thread/132252
+        rights.withUnsafeMutableBufferPointer { rightsBuff in
+            var rightsPtr = UnsafeMutablePointer<AuthorizationItem>(mutating: rightsBuff.baseAddress!)
+            authRights = AuthorizationRights(count: 2, items: rightsPtr)
+            
+            let myFlags: AuthorizationFlags = [.interactionAllowed, .extendRights]
+            var authEnv = AuthorizationEnvironment()
+            
+            status = AuthorizationCopyRights(
+                                           clientAuthRef!,
+                                           &authRights,
+                                           &authEnv,
+                                           myFlags,
+                                           nil
+                                           )
+        }
+        return status!
+    }
+}
+
+// I put all the code regarding the rights in the policy database in this extension to keep things tidy
+extension Authorization {
+    static let kCommandKeyAuthRightName    = "authRightName"
+    static let kCommandKeyAuthRightDefault = "authRightDefault"
+    static let kCommandKeyAuthRightDesc    = "authRightDescription"
+    static let slowdownAuthRightName       = "com.mochoaco.InternetSlowdown.slowdown"
     
     private static let commandInfo: Dictionary = {
         let kAuthorizationRuleAuthenticateAsAdmin2MinTimeout: [NSString: NSString] = [

@@ -30,6 +30,7 @@
 		A290D3F3293B81130020FD94 /* HelperToolExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A290D3F2293B81130020FD94 /* HelperToolExtension.swift */; };
 		A2A45764293EAB8B0043EC8C /* com.mochoaco.InternetSlowdownd.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = A249A989293A23A5007EAF0F /* com.mochoaco.InternetSlowdownd.plist */; };
 		A2A45765293EC62B0043EC8C /* ISLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = A209080E29340950003E0C74 /* ISLogger.swift */; };
+		A2A457672940C0A70043EC8C /* HelperToolExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A457662940C0A70043EC8C /* HelperToolExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +107,7 @@
 		A290D3E6293ABED40020FD94 /* HelperToolProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperToolProtocol.swift; sourceTree = "<group>"; };
 		A290D3E8293ABEE50020FD94 /* XPCDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XPCDelegate.swift; sourceTree = "<group>"; };
 		A290D3F2293B81130020FD94 /* HelperToolExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperToolExtension.swift; sourceTree = "<group>"; };
+		A2A457662940C0A70043EC8C /* HelperToolExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperToolExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,6 +212,7 @@
 				A209080A2931081E003E0C74 /* Authorization.swift */,
 				A209080C29319326003E0C74 /* ISError.swift */,
 				A209080E29340950003E0C74 /* ISLogger.swift */,
+				A2A457662940C0A70043EC8C /* HelperToolExtension.swift */,
 			);
 			path = Backend;
 			sourceTree = "<group>";
@@ -394,6 +397,7 @@
 				A209080D29319326003E0C74 /* ISError.swift in Sources */,
 				A290D3F1293B80EC0020FD94 /* HelperToolProtocol.swift in Sources */,
 				A209080F29340950003E0C74 /* ISLogger.swift in Sources */,
+				A2A457672940C0A70043EC8C /* HelperToolExtension.swift in Sources */,
 				A20907CB292D40F1003E0C74 /* ContentView.swift in Sources */,
 				A20907C9292D40F1003E0C74 /* InternetSlowdownApp.swift in Sources */,
 				A20907FA292D79DE003E0C74 /* AppController.swift in Sources */,

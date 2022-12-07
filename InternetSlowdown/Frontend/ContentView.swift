@@ -15,7 +15,7 @@ struct ContentView: View {
             Button("Start slowdown") {
                 appDelegate.startSlowdown()
             }
-            Button("Install daemon") {
+            Button("Install helper tool (daemon)") {
                 appDelegate.installHelperTool()
             }
         }
