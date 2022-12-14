@@ -45,4 +45,13 @@ class ISXPCClient {
         ISLogger.logger.info("Client XPC's slowdown called. Daemon is: \(daemon.debugDescription)")
         daemon?.startSlowdown(auth: &Authorization.authorization, functionName: #function)
     }
+    
+    func stopSlowdown() {
+        let daemon = helperToolConnection?.remoteObjectProxyWithErrorHandler {
+            error in
+            ISLogger.errorError(with_message: "Error raised by remote object proxy during slowdown: ", error: error)
+        } as? HelperToolProtocol
+        
+        daemon?.stopSlowdown(auth: &Authorization.authorization, functionName: #function)
+    }
 }

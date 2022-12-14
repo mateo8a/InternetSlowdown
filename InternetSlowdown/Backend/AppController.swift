@@ -25,6 +25,10 @@ class AppController: NSObject, NSApplicationDelegate {
         xpc.startSlowdown()
     }
     
+    func stopSlowdown() {
+        xpc.stopSlowdown()
+    }
+    
     func applicationWillTerminate(_ notification: Notification) {
 //    Uncomment when we want rights to be re-written to the policy database
 //    #if DEBUG

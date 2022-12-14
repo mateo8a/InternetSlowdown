@@ -115,7 +115,7 @@ extension Authorization {
     private static let commandInfo: Dictionary = {
         let kAuthorizationRuleAuthenticateAsAdmin2MinTimeout: [NSString: NSString] = [
             "class": "user",
-            "group": "admin",
+            "group": "admin", // This makes sure the user executing the daemon methods belongs to admin group
             "timeout": "120", // 2 minutes
             "shared": "YES",
         ]

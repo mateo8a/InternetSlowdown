@@ -8,15 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
-    @NSApplicationDelegateAdaptor private var appDelegate: AppController
+    @NSApplicationDelegateAdaptor private var appController: AppController
     
     var body: some View {
         VStack {            
             Button("Start slowdown") {
-                appDelegate.startSlowdown()
+                appController.startSlowdown()
+            }
+            Button("Stop slowdown") {
+                appController.stopSlowdown()
             }
             Button("Install helper tool (daemon)") {
-                appDelegate.installHelperTool()
+                appController.installHelperTool()
             }
         }
         .padding()
