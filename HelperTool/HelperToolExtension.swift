@@ -55,6 +55,7 @@ extension HelperTool: HelperToolProtocol {
         setUpDnPipe()
         setUpAnchorFile()
         enableFirewall()
+        loadDummynetAnchor()
         configDnPipe(pipeConf: pipeConf)
     }
     
@@ -75,6 +76,7 @@ extension HelperTool {
         // pfctl commands
         case enableFirewall
         case disableFirewall
+        case loadDummynetAnchor
         // dnctl commands
         case findPipe(pipe: Int)
         case deletePipe(pipe: Int)
@@ -87,6 +89,8 @@ extension HelperTool {
                 return "-E -f /etc/pf.conf"
             case .disableFirewall:
                 return "-d -f /etc/pf.conf"
+            case .loadDummynetAnchor:
+                return "-a com.mochoaco -f /etc/pf.anchors/com.mochoaco"
             case .findPipe(pipe: let p):
                 return "pipe show \(p)"
             case .deletePipe(pipe: let p):
@@ -100,8 +104,9 @@ extension HelperTool {
     }
     
     private func setUpPfFile() {
+        ISLogger.logger.info("Setting up pf.conf file...")
         let pfFilePath = URL(fileURLWithPath: "/etc/pf.conf")
-        let dummynetAnchor = "dummynet-anchor \"com.mochoaco\""
+        let dummynetAnchor = "dummynet-anchor \"com.mochoaco\"\n"
         let f = try? String(contentsOf: pfFilePath, encoding: .utf8)
         var fileContents = f! // The pf.conf file should exist in all macs, so I'm guessing there is no risk in force unwrapping
         
@@ -115,6 +120,7 @@ extension HelperTool {
     }
     
     private func setUpAnchorFile() {
+        ISLogger.logger.info("Setting up dummynet anchor file...")
         let anchorFilePath = "/etc/pf.anchors/com.mochoaco"
         let anchorRules = """
                           no dummynet quick on lo0 all
@@ -122,6 +128,7 @@ extension HelperTool {
                           dummynet in proto tcp from any port 80 pipe \(dnPipe)
                           dummynet in proto udp from any port 443 pipe \(dnPipe)
                           dummynet in proto udp from any port 80 pipe \(dnPipe)
+                          
                           """
         do {
             try anchorRules.write(to: URL(fileURLWithPath: anchorFilePath), atomically: true, encoding: .utf8)
@@ -131,26 +138,35 @@ extension HelperTool {
     }
     
     private func enableFirewall() {
+        ISLogger.logger.info("Enabling firewall...")
         executeCommand(executable: .pfctl, args: .enableFirewall)
     }
     
     private func disableFirewall() {
+        ISLogger.logger.info("Disabling firewall...")
         executeCommand(executable: .pfctl, args: .disableFirewall)
     }
     
     private func setUpDnPipe() {
+        ISLogger.logger.info("Setting up dummynet pipe number variable...")
         if dnPipe == 0 { // This ensures that the dummynet pipe is modified only once, when its value is its default value (namely 0).
-            var output = ""
-            var i = 20
-            while output.isEmpty {
-                output = executeCommand(executable: .dnctl, args: .findPipe(pipe: i))
+            var output = "there is a pipe"
+            var i = 0
+            while !output.isEmpty {
                 i += 1
+                output = executeCommand(executable: .dnctl, args: .findPipe(pipe: i))
             }
             dnPipe = i
         }
     }
     
+    private func loadDummynetAnchor() {
+        ISLogger.logger.info("Loading dummynet anchor...")
+        executeCommand(executable: .pfctl, args: .loadDummynetAnchor)
+    }
+    
     private func configDnPipe(pipeConf: HelperTool.TypeOfSlowdown) {
+        ISLogger.logger.info("Configuring dummynet pipe with dnctl...")
         switch pipeConf {
         case .defaultSlowdown:
             executeCommand(executable: .dnctl, args: .defaultConf(pipe: dnPipe))
@@ -167,7 +183,7 @@ extension HelperTool {
     
     // Taken from https://stackoverflow.com/questions/26971240/how-do-i-run-a-terminal-command-in-a-swift-script-e-g-xcodebuild
     private func executeCommand(executable: ExecutablePaths, args: Args) -> String {
-        ISLogger.logger.info("Executing command...")
+        ISLogger.logger.info("Executing command \(executable.rawValue, privacy: .public) with args \(args.toString(), privacy: .public)...")
         let task = Process()
         let swiftPipe = Pipe()
         
@@ -180,14 +196,14 @@ extension HelperTool {
         do {
             try task.run()
         } catch {
-            ISLogger.logger.error("Error during execution of command \(executable.rawValue). Error: \(error)")
+            ISLogger.logger.error("Error during execution of command \(executable.rawValue, privacy: .public). Error: \(error)")
         }
         
         task.waitUntilExit()
         let data = swiftPipe.fileHandleForReading.readDataToEndOfFile()
         let output = String(data: data, encoding: .utf8)!
         ISLogger.logger.info("\(output, privacy: .public)")
-        ISLogger.logger.info("Finished executing command...")
+        ISLogger.logger.info("Finished executing command  \(executable.rawValue, privacy: .public)...")
         return output
     }
 }
