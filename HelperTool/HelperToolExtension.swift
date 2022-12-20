@@ -52,15 +52,16 @@ extension HelperTool: HelperToolProtocol {
         }
         ISLogger.logger.info("Daemon found authorization to start slowdown...")
         setUpPfFile()
-        setUpAnchorFile()
-        executeCommand(executable: .pfctl, args: .enableFirewall)
         setUpDnPipe()
+        setUpAnchorFile()
+        enableFirewall()
         configDnPipe(pipeConf: pipeConf)
     }
     
     func stopSlowdown(auth: UnsafePointer<AuthorizationExternalForm>, functionName: String) {
         ISLogger.logger.info("Stopping slowdown from the helper tool side...")
-        executeCommand(executable: .pfctl, args: .disableFirewall)
+        deletePipe()
+        disableFirewall()
     }
 }
 
@@ -76,6 +77,7 @@ extension HelperTool {
         case disableFirewall
         // dnctl commands
         case findPipe(pipe: Int)
+        case deletePipe(pipe: Int)
         case defaultConf(pipe: Int)
         case dialUp(pipe: Int)
         
@@ -87,6 +89,8 @@ extension HelperTool {
                 return "-d -f /etc/pf.conf"
             case .findPipe(pipe: let p):
                 return "pipe show \(p)"
+            case .deletePipe(pipe: let p):
+                return "pipe delete \(p)"
             case .defaultConf(pipe: let p):
                 return "pipe \(p) config bw 700Kbit/s delay 1000ms"
             case .dialUp(pipe: let p):
@@ -97,34 +101,56 @@ extension HelperTool {
     
     private func setUpPfFile() {
         let pfFilePath = URL(fileURLWithPath: "/etc/pf.conf")
-        let f = try? String(contentsOf: pfFilePath, encoding: .utf8)
-        var fileContents = f! // The pf.conf file should exist in all macs, so no risk in force unwrapping
-        
         let dummynetAnchor = "dummynet-anchor \"com.mochoaco\""
-        if fileContents.contains(dummynetAnchor) {
-            return
-        }
+        let f = try? String(contentsOf: pfFilePath, encoding: .utf8)
+        var fileContents = f! // The pf.conf file should exist in all macs, so I'm guessing there is no risk in force unwrapping
+        
+        if fileContents.contains(dummynetAnchor) { return }
         fileContents += "\n\(dummynetAnchor)"
-        try? fileContents.write(to: pfFilePath, atomically: true, encoding: .utf8)
+        do {
+            try fileContents.write(to: pfFilePath, atomically: true, encoding: .utf8)
+        } catch {
+            ISLogger.logger.error("Couldn't overwrite /etc/pf.conf file to include the dummynet anchor. Error: \(error)")
+        }
     }
     
     private func setUpAnchorFile() {
         let anchorFilePath = "/etc/pf.anchors/com.mochoaco"
         let anchorRules = """
                           no dummynet quick on lo0 all
-                          dummynet in proto tcp from any port 443 pipe 1
-                          dummynet in proto tcp from any port 80 pipe 1
-                          dummynet in proto udp from any port 443 pipe 1
-                          dummynet in proto udp from any port 80 pipe 1
+                          dummynet in proto tcp from any port 443 pipe \(dnPipe)
+                          dummynet in proto tcp from any port 80 pipe \(dnPipe)
+                          dummynet in proto udp from any port 443 pipe \(dnPipe)
+                          dummynet in proto udp from any port 80 pipe \(dnPipe)
                           """
         do {
             try anchorRules.write(to: URL(fileURLWithPath: anchorFilePath), atomically: true, encoding: .utf8)
         } catch {
-            ISLogger.logger.error("Could not write to the anchor file \(anchorFilePath)")
+            ISLogger.logger.error("Could not write to the anchor file \(anchorFilePath). Error: \(error)")
         }
     }
     
-    func configDnPipe(pipeConf: HelperTool.TypeOfSlowdown) {
+    private func enableFirewall() {
+        executeCommand(executable: .pfctl, args: .enableFirewall)
+    }
+    
+    private func disableFirewall() {
+        executeCommand(executable: .pfctl, args: .disableFirewall)
+    }
+    
+    private func setUpDnPipe() {
+        if dnPipe == 0 { // This ensures that the dummynet pipe is modified only once, when its value is its default value (namely 0).
+            var output = ""
+            var i = 20
+            while output.isEmpty {
+                output = executeCommand(executable: .dnctl, args: .findPipe(pipe: i))
+                i += 1
+            }
+            dnPipe = i
+        }
+    }
+    
+    private func configDnPipe(pipeConf: HelperTool.TypeOfSlowdown) {
         switch pipeConf {
         case .defaultSlowdown:
             executeCommand(executable: .dnctl, args: .defaultConf(pipe: dnPipe))
@@ -135,19 +161,13 @@ extension HelperTool {
         }
     }
     
-    func setUpDnPipe() {
-        var output = ""
-        var i = 20
-        while output == "" {
-            output = executeCommand(executable: .dnctl, args: .findPipe(pipe: i))
-            i += 1
-        }
-        dnPipe = i
+    private func deletePipe() {
+        executeCommand(executable: .dnctl, args: .deletePipe(pipe: dnPipe))
     }
     
     // Taken from https://stackoverflow.com/questions/26971240/how-do-i-run-a-terminal-command-in-a-swift-script-e-g-xcodebuild
     private func executeCommand(executable: ExecutablePaths, args: Args) -> String {
-        ISLogger.logger.info("Executing the slowdown command...")
+        ISLogger.logger.info("Executing command...")
         let task = Process()
         let swiftPipe = Pipe()
         
@@ -160,14 +180,14 @@ extension HelperTool {
         do {
             try task.run()
         } catch {
-            ISLogger.logger.error("Error during execution of command \(executable.rawValue)")
+            ISLogger.logger.error("Error during execution of command \(executable.rawValue). Error: \(error)")
         }
         
         task.waitUntilExit()
         let data = swiftPipe.fileHandleForReading.readDataToEndOfFile()
         let output = String(data: data, encoding: .utf8)!
         ISLogger.logger.info("\(output, privacy: .public)")
-        ISLogger.logger.info("Finished executing the slowdown command...")
+        ISLogger.logger.info("Finished executing command...")
         return output
     }
 }

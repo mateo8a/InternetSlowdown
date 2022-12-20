@@ -43,7 +43,7 @@ class ISXPCClient {
         } as? HelperToolProtocol
         
         ISLogger.logger.info("Client XPC's slowdown called. Daemon is: \(daemon.debugDescription)")
-        daemon?.startSlowdown(auth: &Authorization.authorization, functionName: #function)
+        daemon?.startSlowdown(auth: &Authorization.authorization, functionName: #function, pipeConf: .defaultSlowdown)
     }
     
     func stopSlowdown() {
