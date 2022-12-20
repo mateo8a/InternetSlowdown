@@ -12,19 +12,28 @@ class AppController: NSObject, NSApplicationDelegate {
     var xpc = ISXPCClient()
     
     func applicationDidFinishLaunching(_ notification: Notification) {
-        print("Running applicationDidFinishLaunching!")
-        xpc.connectToHelperTool()
+        ISLogger.logger.info("Running applicationDidFinishLaunching!")
+        Authorization.setupAuthorizationWithErrors()
     }
     
+    func installHelperTool() {
+        HelperTool.installHelperTool()
+    }
+    
+    // This function is bound to the UI
     func startSlowdown() {
-        
+        xpc.startSlowdown()
+    }
+    
+    func stopSlowdown() {
+        xpc.stopSlowdown()
     }
     
     func applicationWillTerminate(_ notification: Notification) {
 //    Uncomment when we want rights to be re-written to the policy database
 //    #if DEBUG
 //        do {
-//            try Authorization.removeAuthorizationRights(authRef: xpc.clientAuthRef!)
+//            try Authorization.removeAuthorizationRights(authRef: Authorization.clientAuthRef!)
 //        } catch {
 //            ISLogger().errorError(with_message: "Error while removing rights from policy database", error: error)
 //            return

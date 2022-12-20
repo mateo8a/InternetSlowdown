@@ -12,26 +12,6 @@ final class ISXPCClientTests: XCTestCase {
 
     var xpc = ISXPCClient()
     
-    func testEmptyAuthRef() {
-        XCTAssertNil(xpc.clientAuthRef)
-    }
-    
-    func testAuthorizationIsAuthorizationExternalForm() {
-        XCTAssertTrue(xpc.authorization is AuthorizationExternalForm)
-    }
-    
-    func testAuthorizationExistsMethod() {
-        XCTAssertFalse(xpc.authorizationExists(xpc.authorization))
-        xpc.authorization = AuthorizationExternalForm(bytes: (1,-1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0))
-        XCTAssertTrue(xpc.authorizationExists(xpc.authorization))
-    }
-    
-    func testSetupAuthorization() throws {
-        try xpc.setupAuthorization()
-        // If authorization fails, then xpc.clientAuthRef remains nil
-        XCTAssertNotNil(xpc.clientAuthRef)
-        XCTAssertTrue(xpc.authorizationExists(xpc.authorization))
-    }
 
 //    func testPerformanceExample() throws {
 //        // This is an example of a performance test case.

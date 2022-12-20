@@ -6,73 +6,52 @@
 //
 
 import Foundation
-import Security
 
 class ISXPCClient {
-
-    // First, set up authorization
-    // Then, connect to privileged helper tool (the daemon)
     
-    var clientAuthRef: AuthorizationRef?
-    var authorization = AuthorizationExternalForm()
-//    var helperToolConnection: NSXPCConnection
-    
-    func setupAuthorization() throws {
-        // Do not create external authorization reference if there is already one
-        if authorizationExists(authorization) {
-            return
-        }
-        
-        // Create authorization reference
-        var resultCode: OSStatus = AuthorizationCreate(nil, nil, AuthorizationFlags(), &clientAuthRef)
-        
-        guard (resultCode == errAuthorizationSuccess) else {
-            let error: CFString = SecCopyErrorMessageString(resultCode, nil)!
-            throw ISError.initialAuthorization(error)
-        }
-        
-        // Create external authorization reference
-        resultCode = AuthorizationMakeExternalForm(clientAuthRef!, &authorization);
-        
-        guard (resultCode == errAuthorizationSuccess) else {
-            let error: CFString = SecCopyErrorMessageString(resultCode, nil)!
-            throw ISError.externalAuthCreation(error)
-        }
-        
-        // Set up authorization rights in the policy database
-        guard (clientAuthRef != nil) else {
-            throw ISError.noAuthorizationReference
-        }
-        try Authorization.setupAuthorizationRights(authRef: clientAuthRef!)
-    }
+    var helperToolConnection: NSXPCConnection?
     
     func connectToHelperTool() {
-        do {
-            try setupAuthorization()
-        } catch ISError.initialAuthorization(let e) {
-            ISLogger().cfStringError(with_message: "Initial authorization failed with error", error: e)
-            return
-        } catch ISError.externalAuthCreation(let e) {
-            ISLogger().cfStringError(with_message: "External authorization creation failed with error", error: e)
-            return
-        } catch {
-            ISLogger().errorError(with_message: "Authorization set up failed with error", error: error)
-            return
+        if helperToolConnection == nil {
+            helperToolConnection = NSXPCConnection(machServiceName: HelperTool.machServiceName, options: NSXPCConnection.Options.privileged)
+
+            helperToolConnection?.remoteObjectInterface = NSXPCInterface(with: HelperToolProtocol.self)
+            helperToolConnection?.invalidationHandler = {
+                () -> Void in
+                ISLogger.warning(with_message: "Connection to helper tool was invalidated. Setting connection to nil.")
+                self.helperToolConnection = nil
+            }
+            
+            helperToolConnection?.interruptionHandler = {
+                () -> Void in
+                ISLogger.warning(with_message: "Connection to helper tool was interrupted. Retrying connection...")
+                self.connectToHelperTool()
+            }
+            ISLogger.logger.info("Connected to: \(self.helperToolConnection.debugDescription)")
+            helperToolConnection?.resume()
         }
     }
     
-    func authorizationExists(_ auth: AuthorizationExternalForm) -> Bool {
-        let authBytesAsArray: [UInt8] = {
-            withUnsafeBytes(of: auth) { buf in
-                return [UInt8](buf)
-            }
-        }()
+    func startSlowdown() {
+        // First, connect to the helper tool
+        connectToHelperTool()
         
-        for i in authBytesAsArray {
-            if !(i == 0) {
-                return true
-            }
-        }
-        return false
+        // Then, obtain the remote object and execute desired method
+        let daemon = helperToolConnection?.remoteObjectProxyWithErrorHandler {
+            error in
+            ISLogger.errorError(with_message: "Error raised by remote object proxy during slowdown: ", error: error)
+        } as? HelperToolProtocol
+        
+        ISLogger.logger.info("Client XPC's slowdown called. Daemon is: \(daemon.debugDescription)")
+        daemon?.startSlowdown(auth: &Authorization.authorization, functionName: #function, pipeConf: .defaultSlowdown)
+    }
+    
+    func stopSlowdown() {
+        let daemon = helperToolConnection?.remoteObjectProxyWithErrorHandler {
+            error in
+            ISLogger.errorError(with_message: "Error raised by remote object proxy during slowdown: ", error: error)
+        } as? HelperToolProtocol
+        
+        daemon?.stopSlowdown(auth: &Authorization.authorization, functionName: #function)
     }
 }

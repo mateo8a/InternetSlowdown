@@ -7,5 +7,8 @@
 
 import Foundation
 
-print("Hello, World!")
-
+let delegate = XPCDelegate()
+let listener = NSXPCListener(machServiceName: HelperTool.machServiceName)
+listener.delegate = delegate;
+listener.resume()
+RunLoop.main.run()
