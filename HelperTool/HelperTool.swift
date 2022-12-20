@@ -13,5 +13,6 @@ class HelperTool {
     
     @objc enum TypeOfSlowdown: Int {
         case defaultSlowdown
+        case dialUp
     }
 }

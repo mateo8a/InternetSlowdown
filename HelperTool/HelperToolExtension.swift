@@ -128,6 +128,8 @@ extension HelperTool {
         switch pipeConf {
         case .defaultSlowdown:
             executeCommand(executable: .dnctl, args: .defaultConf(pipe: dnPipe))
+        case .dialUp:
+            executeCommand(executable: .dnctl, args: .dialUp(pipe: dnPipe))
         default:
             ISLogger.logger.error("Pipe configuration for option \(pipeConf.rawValue) does not exist")
         }
