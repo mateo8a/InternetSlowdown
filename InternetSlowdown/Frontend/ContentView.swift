@@ -10,19 +10,35 @@ import SwiftUI
 struct ContentView: View {
     @NSApplicationDelegateAdaptor private var appController: AppController
     
+    @State var typeOfSlowdown: HelperTool.TypeOfSlowdown = .defaultSlowdown
+    
     var body: some View {
-        VStack {            
-            Button("Start slowdown") {
-                appController.startSlowdown()
+        HStack{
+            VStack {
+                Form {
+                    Picker("Slowdown options:", selection: $typeOfSlowdown) {
+                        Text("Default").tag(HelperTool.TypeOfSlowdown.defaultSlowdown)
+                        Text("Dial Up").tag(HelperTool.TypeOfSlowdown.dialUp)
+                    }
+                    .pickerStyle(.inline)
+                }
             }
-            Button("Stop slowdown") {
-                appController.stopSlowdown()
+            VStack {
+                Button("Test") {
+                    appController.test(typeOfSlowdown)
+                }
+                Button("Start slowdown") {
+                    appController.startSlowdown()
+                }
+                Button("Stop slowdown") {
+                    appController.stopSlowdown()
+                }
+                Button("Install helper tool (daemon)") {
+                    appController.installHelperTool()
+                }
             }
-            Button("Install helper tool (daemon)") {
-                appController.installHelperTool()
-            }
+            .padding()
         }
-        .padding()
     }
 }
 

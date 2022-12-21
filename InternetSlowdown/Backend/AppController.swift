@@ -29,6 +29,14 @@ class AppController: NSObject, NSApplicationDelegate {
         xpc.stopSlowdown()
     }
     
+    func test(_ bindedVar: HelperTool.TypeOfSlowdown) {
+        if bindedVar == .defaultSlowdown {
+            print("default")
+        } else if bindedVar == .dialUp {
+            print("dial up")
+        }
+    }
+    
     func applicationWillTerminate(_ notification: Notification) {
 //    Uncomment when we want rights to be re-written to the policy database
 //    #if DEBUG
