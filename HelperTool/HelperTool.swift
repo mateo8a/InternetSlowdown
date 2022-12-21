@@ -11,7 +11,7 @@ class HelperTool {
     static let machServiceName = "com.mochoaco.InternetSlowdownd"
     var dnPipe: Int = 0
     
-    @objc enum TypeOfSlowdown: Int {
+    @objc enum SlowdownType: Int {
         case defaultSlowdown
         case dialUp
     }

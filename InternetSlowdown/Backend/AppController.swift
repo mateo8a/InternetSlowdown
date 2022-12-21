@@ -21,15 +21,15 @@ class AppController: NSObject, NSApplicationDelegate {
     }
     
     // This function is bound to the UI
-    func startSlowdown() {
-        xpc.startSlowdown()
+    func startSlowdown(slowdownType: HelperTool.SlowdownType) {
+        xpc.startSlowdown(slowdownType: slowdownType)
     }
     
     func stopSlowdown() {
         xpc.stopSlowdown()
     }
     
-    func test(_ bindedVar: HelperTool.TypeOfSlowdown) {
+    func test(_ bindedVar: HelperTool.SlowdownType) {
         if bindedVar == .defaultSlowdown {
             print("default")
         } else if bindedVar == .dialUp {

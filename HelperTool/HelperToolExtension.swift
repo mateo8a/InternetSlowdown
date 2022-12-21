@@ -43,7 +43,7 @@ extension HelperTool {
 }
 
 extension HelperTool: HelperToolProtocol {
-    func startSlowdown(auth: UnsafePointer<AuthorizationExternalForm>, functionName: String, pipeConf: HelperTool.TypeOfSlowdown) {
+    func startSlowdown(auth: UnsafePointer<AuthorizationExternalForm>, functionName: String, pipeConf: HelperTool.SlowdownType) {
         ISLogger.logger.info("Starting slowdown from the helper tool side...")
         let isAuthorized = checkAuthorization(auth: auth, functionName: functionName)
         guard isAuthorized else {
@@ -61,7 +61,7 @@ extension HelperTool: HelperToolProtocol {
     
     func stopSlowdown(auth: UnsafePointer<AuthorizationExternalForm>, functionName: String) {
         ISLogger.logger.info("Stopping slowdown from the helper tool side...")
-        deletePipe()
+        deleteDnPipe()
         disableFirewall()
     }
 }
@@ -165,7 +165,7 @@ extension HelperTool {
         executeCommand(executable: .pfctl, args: .loadDummynetAnchor)
     }
     
-    private func configDnPipe(pipeConf: HelperTool.TypeOfSlowdown) {
+    private func configDnPipe(pipeConf: HelperTool.SlowdownType) {
         ISLogger.logger.info("Configuring dummynet pipe with dnctl...")
         switch pipeConf {
         case .defaultSlowdown:
@@ -177,7 +177,7 @@ extension HelperTool {
         }
     }
     
-    private func deletePipe() {
+    private func deleteDnPipe() {
         executeCommand(executable: .dnctl, args: .deletePipe(pipe: dnPipe))
     }
     
