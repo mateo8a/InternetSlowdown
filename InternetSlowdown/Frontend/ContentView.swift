@@ -24,9 +24,6 @@ struct ContentView: View {
                 }
             }
             VStack {
-                Button("Test") {
-                    appController.test(slowdownType)
-                }
                 Button("Start slowdown") {
                     appController.startSlowdown(slowdownType: slowdownType)
                 }
