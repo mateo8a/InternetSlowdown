@@ -7,41 +7,7 @@
 
 import Foundation
 
-// Implement this here because file HelperTool.swift is also part of the main app target
-extension HelperTool {
-    func checkAuthorization(auth: UnsafePointer<AuthorizationExternalForm>, functionName: String) -> Bool {
-        var status: OSStatus? = nil
-        var authRef: AuthorizationRef?
-        let resultCode = AuthorizationCreateFromExternalForm(auth, &authRef)
-        
-        guard (resultCode == errAuthorizationSuccess) else {
-            let error: CFString = SecCopyErrorMessageString(resultCode, nil)!
-            ISLogger.logger.error("Failed to create authorization form from external auth form with error: \(error)")
-            return false
-        }
-        
-        var authRights = AuthorizationRights()
-        var rightName = (functionName as NSString).utf8String!
-        var right = [AuthorizationItem(name: rightName, valueLength: 0, value: nil, flags: 0)]
-        right.withUnsafeMutableBufferPointer { rightsBuff in
-            var rightsPtr = UnsafeMutablePointer<AuthorizationItem>(mutating: rightsBuff.baseAddress!)
-            authRights = AuthorizationRights(count: 1, items: rightsPtr)
-            
-            let myFlags: AuthorizationFlags = [.interactionAllowed, .extendRights]
-            var authEnv = AuthorizationEnvironment()
-            
-            status = AuthorizationCopyRights(
-                                           authRef!,
-                                           &authRights,
-                                           &authEnv,
-                                           myFlags,
-                                           nil
-                                           )
-        }
-        return status == errAuthorizationSuccess
-    }
-}
-
+// Daemon methods
 extension HelperTool: HelperToolProtocol {
     func startSlowdown(auth: UnsafePointer<AuthorizationExternalForm>, functionName: String, pipeConf: HelperTool.SlowdownType) {
         ISLogger.logger.info("Starting slowdown from the helper tool side...")
@@ -66,6 +32,7 @@ extension HelperTool: HelperToolProtocol {
     }
 }
 
+// Methods to use in daemon methods
 extension HelperTool {
     private enum ExecutablePaths: String {
         case pfctl = "/sbin/pfctl"
@@ -205,5 +172,40 @@ extension HelperTool {
         ISLogger.logger.info("Output: \(output, privacy: .public)")
         ISLogger.logger.info("Finished executing command  \(executable.rawValue, privacy: .public)...")
         return output
+    }
+}
+
+// Implement this here because file HelperTool.swift is also part of the main app target
+extension HelperTool {
+    func checkAuthorization(auth: UnsafePointer<AuthorizationExternalForm>, functionName: String) -> Bool {
+        var status: OSStatus? = nil
+        var authRef: AuthorizationRef?
+        let resultCode = AuthorizationCreateFromExternalForm(auth, &authRef)
+        
+        guard (resultCode == errAuthorizationSuccess) else {
+            let error: CFString = SecCopyErrorMessageString(resultCode, nil)!
+            ISLogger.logger.error("Failed to create authorization form from external auth form with error: \(error)")
+            return false
+        }
+        
+        var authRights = AuthorizationRights()
+        var rightName = (functionName as NSString).utf8String!
+        var right = [AuthorizationItem(name: rightName, valueLength: 0, value: nil, flags: 0)]
+        right.withUnsafeMutableBufferPointer { rightsBuff in
+            var rightsPtr = UnsafeMutablePointer<AuthorizationItem>(mutating: rightsBuff.baseAddress!)
+            authRights = AuthorizationRights(count: 1, items: rightsPtr)
+            
+            let myFlags: AuthorizationFlags = [.interactionAllowed, .extendRights]
+            var authEnv = AuthorizationEnvironment()
+            
+            status = AuthorizationCopyRights(
+                                           authRef!,
+                                           &authRights,
+                                           &authEnv,
+                                           myFlags,
+                                           nil
+                                           )
+        }
+        return status == errAuthorizationSuccess
     }
 }
