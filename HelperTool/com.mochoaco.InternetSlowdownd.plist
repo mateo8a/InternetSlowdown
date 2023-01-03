@@ -4,6 +4,8 @@
 <dict>
     <key>Label</key>
     <string>com.mochoaco.InternetSlowdownd</string>
+    <key>RunAtLoad</key>
+    <true/>
     <key>MachServices</key>
     <dict>
         <key>com.mochoaco.InternetSlowdownd</key>
