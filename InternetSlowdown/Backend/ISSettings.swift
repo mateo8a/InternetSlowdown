@@ -46,7 +46,7 @@ class ISSettings {
     
     var defaultSettings: [String : String] = [
         "EndTime" : "\(Date.distantPast.ISO8601Format())",
-        "SlowdownType" : "\(HelperTool.SlowdownType.defaultSlowdown.rawValue)",
+        "SlowdownType" : "\(SlowdownType.defaultSlowdown.rawValue)",
         "SlowdownIsActive" : "No"
     ]
     

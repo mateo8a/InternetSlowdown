@@ -7,8 +7,8 @@
 
 import Foundation
 
-class SlowdownExecuter {
-    static let shared = SlowdownExecuter()
+class SlowdownSetup {
+    static let shared = SlowdownSetup()
     
     private init() {}
     
@@ -76,7 +76,7 @@ class SlowdownExecuter {
         executeCommand(executable: .pfctl, args: .loadDummynetAnchor)
     }
     
-    func configDnPipe(pipeConf: HelperTool.SlowdownType) {
+    func configDnPipe(pipeConf: SlowdownType) {
         ISLogger.logger.info("Configuring dummynet pipe with dnctl...")
         switch pipeConf {
         case .defaultSlowdown:

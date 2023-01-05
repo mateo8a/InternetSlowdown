@@ -32,7 +32,7 @@ class ISXPCClient {
         }
     }
     
-    func startSlowdown(slowdownType: HelperTool.SlowdownType) {
+    func startSlowdown(slowdownType: SlowdownType) {
         // First, connect to the helper tool
         connectToHelperTool()
         

@@ -21,7 +21,7 @@ class AppController: NSObject, NSApplicationDelegate {
     }
     
     // This function is bound to the UI
-    func startSlowdown(slowdownType: HelperTool.SlowdownType) {
+    func startSlowdown(slowdownType: SlowdownType) {
         xpc.startSlowdown(slowdownType: slowdownType)
     }
     

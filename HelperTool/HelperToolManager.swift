@@ -23,8 +23,8 @@ class HelperToolManager: NSObject {
                 settings.settingsDict["SlowdownIsActive"] = "No"
             } else {
                 let rawValue = Int(settings.settingsDict["SlowdownType"]!)
-                let slowdownType = HelperTool.SlowdownType(rawValue: rawValue!)
-                HelperTool().restartSlowdown(pipeConf: slowdownType!)
+                let slowdownType = SlowdownType(rawValue: rawValue!)
+                SlowdownMethods.restartSlowdown(pipeConf: slowdownType!)
             }
         }
     }
