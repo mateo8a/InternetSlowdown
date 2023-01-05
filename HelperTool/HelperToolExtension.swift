@@ -33,13 +33,13 @@ extension HelperTool: HelperToolProtocol {
 }
 
 // Methods to use in daemon methods
-extension HelperTool {
+private extension HelperTool {
     private enum ExecutablePaths: String {
         case pfctl = "/sbin/pfctl"
         case dnctl = "/usr/sbin/dnctl"
     }
     
-    private enum Args {
+    enum Args {
         // pfctl commands
         case enableFirewall
         case disableFirewall
@@ -70,7 +70,7 @@ extension HelperTool {
         }
     }
     
-    private func setUpPfFile() {
+    func setUpPfFile() {
         ISLogger.logger.info("Setting up pf.conf file...")
         let pfFilePath = URL(fileURLWithPath: "/etc/pf.conf")
         let dummynetAnchor = "dummynet-anchor \"com.mochoaco\"\n"
@@ -86,7 +86,7 @@ extension HelperTool {
         }
     }
     
-    private func setUpAnchorFile() {
+    func setUpAnchorFile() {
         ISLogger.logger.info("Setting up dummynet anchor file...")
         let anchorFilePath = "/etc/pf.anchors/com.mochoaco"
         let anchorRules = """
@@ -104,35 +104,35 @@ extension HelperTool {
         }
     }
     
-    private func enableFirewall() {
+    func enableFirewall() {
         ISLogger.logger.info("Enabling firewall...")
         executeCommand(executable: .pfctl, args: .enableFirewall)
     }
     
-    private func disableFirewall() {
+    func disableFirewall() {
         ISLogger.logger.info("Disabling firewall...")
         executeCommand(executable: .pfctl, args: .disableFirewall)
     }
     
-    private func setUpDnPipe() {
+    func setUpDnPipe() {
         ISLogger.logger.info("Setting up dummynet pipe number variable...")
         if dnPipe == 0 { // This ensures that the dummynet pipe is modified only once, when its value is its default value (namely 0).
-            var output = "there is a pipe"
+            var outputOfRunningDnctlCommand = "placeholder non-empty output"
             var i = 0
-            while !output.isEmpty {
+            while !outputOfRunningDnctlCommand.isEmpty {
                 i += 1
-                output = executeCommand(executable: .dnctl, args: .findPipe(pipe: i))
+                outputOfRunningDnctlCommand = executeCommand(executable: .dnctl, args: .findPipe(pipe: i))
             }
             dnPipe = i
         }
     }
     
-    private func loadDummynetAnchor() {
+    func loadDummynetAnchor() {
         ISLogger.logger.info("Loading dummynet anchor...")
         executeCommand(executable: .pfctl, args: .loadDummynetAnchor)
     }
     
-    private func configDnPipe(pipeConf: HelperTool.SlowdownType) {
+    func configDnPipe(pipeConf: HelperTool.SlowdownType) {
         ISLogger.logger.info("Configuring dummynet pipe with dnctl...")
         switch pipeConf {
         case .defaultSlowdown:
@@ -144,12 +144,12 @@ extension HelperTool {
         }
     }
     
-    private func deleteDnPipe() {
+    func deleteDnPipe() {
         executeCommand(executable: .dnctl, args: .deletePipe(pipe: dnPipe))
     }
     
     // Taken from https://stackoverflow.com/questions/26971240/how-do-i-run-a-terminal-command-in-a-swift-script-e-g-xcodebuild
-    private func executeCommand(executable: ExecutablePaths, args: Args) -> String {
+    func executeCommand(executable: ExecutablePaths, args: Args) -> String {
         ISLogger.logger.info("Executing command \(executable.rawValue, privacy: .public) with args \(args.toString(), privacy: .public)...")
         let task = Process()
         let swiftPipe = Pipe()
@@ -175,9 +175,20 @@ extension HelperTool {
     }
 }
 
+extension HelperTool {
+    func restartSlowdown(pipeConf: HelperTool.SlowdownType) {
+        ISLogger.logger.info("Restarting slowdown from the helper tool side...")
+        setUpDnPipe()
+        setUpAnchorFile()
+        enableFirewall()
+        loadDummynetAnchor()
+        configDnPipe(pipeConf: pipeConf)
+    }
+}
+
 // Implement this here because file HelperTool.swift is also part of the main app target
 extension HelperTool {
-    func checkAuthorization(auth: UnsafePointer<AuthorizationExternalForm>, functionName: String) -> Bool {
+    private func checkAuthorization(auth: UnsafePointer<AuthorizationExternalForm>, functionName: String) -> Bool {
         var status: OSStatus? = nil
         var authRef: AuthorizationRef?
         let resultCode = AuthorizationCreateFromExternalForm(auth, &authRef)

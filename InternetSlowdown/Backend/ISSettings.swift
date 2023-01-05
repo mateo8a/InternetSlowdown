@@ -16,7 +16,7 @@ class ISSettings {
     var settingsFile: String {
         "\(settingsDirectoryPath)InternetSlowdownSettings"
     }
-    var settingsDict: [String : Any] = [:]
+    var settingsDict: [String : String] = [:]
     
     func createSettingsFile() {
         let fileManager = FileManager()
@@ -47,7 +47,7 @@ class ISSettings {
     var defaultSettings: [String : String] = [
         "EndTime" : "\(Date.distantPast.ISO8601Format())",
         "SlowdownType" : "\(HelperTool.SlowdownType.defaultSlowdown.rawValue)",
-        "SlowdownIsActive" : "1"
+        "SlowdownIsActive" : "No"
     ]
     
     func loadSettingsFromDisk() {
