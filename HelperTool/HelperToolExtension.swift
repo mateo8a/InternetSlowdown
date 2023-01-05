@@ -7,7 +7,7 @@
 
 import Foundation
 
-// Daemon methods
+// Daemon XPC methods
 extension HelperTool: HelperToolProtocol {
     func startSlowdown(auth: UnsafePointer<AuthorizationExternalForm>, functionName: String, pipeConf: HelperTool.SlowdownType) {
         ISLogger.logger.info("Starting slowdown from the helper tool side...")
@@ -34,7 +34,7 @@ extension HelperTool: HelperToolProtocol {
 
 // Methods to use in daemon methods
 private extension HelperTool {
-    private enum ExecutablePaths: String {
+    enum ExecutablePaths: String {
         case pfctl = "/sbin/pfctl"
         case dnctl = "/usr/sbin/dnctl"
     }
@@ -175,6 +175,7 @@ private extension HelperTool {
     }
 }
 
+// Non-XPC daemon methods
 extension HelperTool {
     func restartSlowdown(pipeConf: HelperTool.SlowdownType) {
         ISLogger.logger.info("Restarting slowdown from the helper tool side...")
