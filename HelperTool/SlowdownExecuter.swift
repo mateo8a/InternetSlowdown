@@ -90,6 +90,7 @@ class SlowdownExecuter {
     
     func deleteDnPipe() {
         executeCommand(executable: .dnctl, args: .deletePipe(pipe: dnPipe))
+        dnPipe = 0
     }
     
     private enum ExecutablePaths: String {
