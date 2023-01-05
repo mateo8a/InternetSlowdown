@@ -8,6 +8,6 @@
 import Foundation
 
 @objc protocol HelperToolProtocol {
-    func startSlowdown(auth: UnsafePointer<AuthorizationExternalForm>, functionName: String, pipeConf: SlowdownType)
+    func startSlowdown(auth: UnsafePointer<AuthorizationExternalForm>, functionName: String, pipeConf: SlowdownType, endDate: Date)
     func stopSlowdown(auth: UnsafePointer<AuthorizationExternalForm>, functionName: String)
 }

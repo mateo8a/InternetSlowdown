@@ -9,7 +9,7 @@ import Foundation
 
 // Daemon XPC methods
 extension HelperTool: HelperToolProtocol {
-    func startSlowdown(auth: UnsafePointer<AuthorizationExternalForm>, functionName: String, pipeConf: SlowdownType) {
+    func startSlowdown(auth: UnsafePointer<AuthorizationExternalForm>, functionName: String, pipeConf: SlowdownType, endDate: Date) {
         ISLogger.logger.info("Starting slowdown from the helper tool side...")
         let isAuthorized = HelperToolAuth.checkAuthorization(auth: auth, functionName: functionName)
         guard isAuthorized else {
@@ -18,6 +18,7 @@ extension HelperTool: HelperToolProtocol {
         }
         ISLogger.logger.info("Daemon found authorization to start slowdown...")
         SlowdownMethods.startSlowdown(pipeConf: pipeConf)
+        ISSettings.shared.updateSettings(pipeConf: pipeConf, endDate: endDate)
     }
     
     func stopSlowdown(auth: UnsafePointer<AuthorizationExternalForm>, functionName: String) {

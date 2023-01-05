@@ -249,9 +249,9 @@
 				A23CB2AE296740FF00F2AEF2 /* SlowdownMethods.swift */,
 				A23CB2B0296749A500F2AEF2 /* HelperToolAuth.swift */,
 				A290D3E6293ABED40020FD94 /* HelperToolProtocol.swift */,
+				A23CB2B229674D4500F2AEF2 /* SlowdownType.swift */,
 				A249A985293A12BC007EAF0F /* Info.plist */,
 				A249A989293A23A5007EAF0F /* com.mochoaco.InternetSlowdownd.plist */,
-				A23CB2B229674D4500F2AEF2 /* SlowdownType.swift */,
 			);
 			path = HelperTool;
 			sourceTree = "<group>";

@@ -45,7 +45,7 @@ class ISSettings {
     }
     
     var defaultSettings: [String : String] = [
-        "EndTime" : "\(Date.distantPast.ISO8601Format())",
+        "EndDate" : "\(Date.distantPast.ISO8601Format())",
         "SlowdownType" : "\(SlowdownType.defaultSlowdown.rawValue)",
         "SlowdownIsActive" : "No"
     ]
@@ -58,5 +58,9 @@ class ISSettings {
         } else {
             createSettingsFile()
         }
+    }
+    
+    func updateSettings(pipeConf: SlowdownType, endDate: Date) {
+        
     }
 }
