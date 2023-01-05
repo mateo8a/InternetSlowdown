@@ -45,10 +45,7 @@ extension HelperTool {
         slowdownExecuter.loadDummynetAnchor()
         slowdownExecuter.configDnPipe(pipeConf: pipeConf)
     }
-}
 
-// Implement this here because file HelperTool.swift is also part of the main app target
-extension HelperTool {
     private func checkAuthorization(auth: UnsafePointer<AuthorizationExternalForm>, functionName: String) -> Bool {
         var status: OSStatus? = nil
         var authRef: AuthorizationRef?
