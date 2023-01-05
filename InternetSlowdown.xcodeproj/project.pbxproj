@@ -20,6 +20,7 @@
 		A209080B2931081E003E0C74 /* Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = A209080A2931081E003E0C74 /* Authorization.swift */; };
 		A209080D29319326003E0C74 /* ISError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A209080C29319326003E0C74 /* ISError.swift */; };
 		A209080F29340950003E0C74 /* ISLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = A209080E29340950003E0C74 /* ISLogger.swift */; };
+		A23CB2AD2967187900F2AEF2 /* SlowdownExecuter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23CB2AC2967187900F2AEF2 /* SlowdownExecuter.swift */; };
 		A249A987293A215F007EAF0F /* com.mochoaco.InternetSlowdownd in CopyFiles */ = {isa = PBXBuildFile; fileRef = A209080129303ECB003E0C74 /* com.mochoaco.InternetSlowdownd */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		A249A988293A2282007EAF0F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A20907CC292D40F2003E0C74 /* Assets.xcassets */; };
 		A290D3E5293ABE980020FD94 /* HelperTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = A290D3E4293ABE980020FD94 /* HelperTool.swift */; };
@@ -102,6 +103,7 @@
 		A209080A2931081E003E0C74 /* Authorization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authorization.swift; sourceTree = "<group>"; };
 		A209080C29319326003E0C74 /* ISError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISError.swift; sourceTree = "<group>"; };
 		A209080E29340950003E0C74 /* ISLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISLogger.swift; sourceTree = "<group>"; };
+		A23CB2AC2967187900F2AEF2 /* SlowdownExecuter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlowdownExecuter.swift; sourceTree = "<group>"; };
 		A249A98329396DBF007EAF0F /* Info.plist */ = {isa = PBXFileReference; explicitFileType = text.xml; path = Info.plist; sourceTree = "<group>"; };
 		A249A985293A12BC007EAF0F /* Info.plist */ = {isa = PBXFileReference; explicitFileType = text.xml; path = Info.plist; sourceTree = "<group>"; };
 		A249A989293A23A5007EAF0F /* com.mochoaco.InternetSlowdownd.plist */ = {isa = PBXFileReference; explicitFileType = text.xml; path = com.mochoaco.InternetSlowdownd.plist; sourceTree = "<group>"; };
@@ -239,6 +241,7 @@
 				A290D3E8293ABEE50020FD94 /* HelperToolManager.swift */,
 				A249A985293A12BC007EAF0F /* Info.plist */,
 				A249A989293A23A5007EAF0F /* com.mochoaco.InternetSlowdownd.plist */,
+				A23CB2AC2967187900F2AEF2 /* SlowdownExecuter.swift */,
 			);
 			path = HelperTool;
 			sourceTree = "<group>";
@@ -435,6 +438,7 @@
 				A290D3F3293B81130020FD94 /* HelperToolExtension.swift in Sources */,
 				A2ED83CF2966190C00889493 /* ISSettings.swift in Sources */,
 				A290D3E9293ABEE50020FD94 /* HelperToolManager.swift in Sources */,
+				A23CB2AD2967187900F2AEF2 /* SlowdownExecuter.swift in Sources */,
 				A290D3E7293ABED40020FD94 /* HelperToolProtocol.swift in Sources */,
 				A2A45765293EC62B0043EC8C /* ISLogger.swift in Sources */,
 				A290D3E5293ABE980020FD94 /* HelperTool.swift in Sources */,

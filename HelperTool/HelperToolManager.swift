@@ -12,10 +12,11 @@ class HelperToolManager: NSObject {
         super.init()
         let settings = ISSettings.shared
         settings.loadSettingsFromDisk()
-        runSlowdownIfNecessary(settings)
+        runSlowdownIfNecessary()
     }
     
-    func runSlowdownIfNecessary(_ settings: ISSettings) {
+    func runSlowdownIfNecessary() {
+        let settings = ISSettings.shared
         if settings.settingsDict["SlowdownIsActive"] == "Yes" {
             let endDate = try? Date(settings.settingsDict["EndTime"]!, strategy: .iso8601)
             if Date.now > endDate! {
@@ -24,7 +25,6 @@ class HelperToolManager: NSObject {
                 let rawValue = Int(settings.settingsDict["SlowdownType"]!)
                 let slowdownType = HelperTool.SlowdownType(rawValue: rawValue!)
                 HelperTool().restartSlowdown(pipeConf: slowdownType!)
-                
             }
         }
     }

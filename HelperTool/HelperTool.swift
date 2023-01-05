@@ -9,7 +9,6 @@ import Foundation
 
 class HelperTool {
     static let machServiceName = "com.mochoaco.InternetSlowdownd"
-    var dnPipe: Int = 0
     
     @objc enum SlowdownType: Int {
         case defaultSlowdown
