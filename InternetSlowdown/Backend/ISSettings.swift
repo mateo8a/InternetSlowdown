@@ -16,7 +16,20 @@ class ISSettings {
     var settingsFile: String {
         "\(settingsDirectoryPath)InternetSlowdownSettings"
     }
-    var settingsDict: [String : String] = [:]
+    var settingsDict: [String : String] = [:] {
+        didSet {
+            writeSettingsToDisk()
+        }
+    }
+    static let endDateKey = "EndDate"
+    static let slowdownTypeKey = "SlowdownType"
+    static let slowdownIsActiveKey = "SlowdownIsActive"
+    
+    var defaultSettings: [String : String] = [
+        ISSettings.endDateKey : "\(Date.distantPast.ISO8601Format())",
+        ISSettings.slowdownTypeKey : "\(SlowdownType.defaultSlowdown.rawValue)",
+        ISSettings.slowdownIsActiveKey : "false"
+    ]
     
     func createSettingsFile() {
         let fileManager = FileManager()
@@ -24,31 +37,25 @@ class ISSettings {
             try fileManager.createDirectory(atPath: settingsDirectoryPath, withIntermediateDirectories: true)
             ISLogger.logger.info("Creation of folder at \(self.settingsDirectoryPath, privacy: .public)")
         } catch {
-            ISLogger.logger.error("Error creating \(self.settingsDirectoryPath) folder: \(error)")
+            ISLogger.logger.error("Error creating \(self.settingsDirectoryPath, privacy: .public) folder: \(error)")
         }
         if !fileManager.fileExists(atPath: settingsFile) {
             let success = fileManager.createFile(atPath: settingsFile, contents: nil)
             settingsDict = defaultSettings
-            writeSettingsToDisk()
             ISLogger.logger.info("Creation of settings file was \(success)")
         }
     }
     
     func writeSettingsToDisk() {
+        // TODO: Look into using DispatchQueue.global or DispatchIO for this method
         do {
             let settingsAsJSON = try JSONSerialization.data(withJSONObject: settingsDict)
             try settingsAsJSON.write(to: URL(fileURLWithPath: settingsFile))
         } catch {
             ISLogger.logger.error("Error while writing settings to file: \(error)")
         }
-        
+        // Send notification through DistributedNotificationCenter so the UI gets updated if necessary
     }
-    
-    var defaultSettings: [String : String] = [
-        "EndDate" : "\(Date.distantPast.ISO8601Format())",
-        "SlowdownType" : "\(SlowdownType.defaultSlowdown.rawValue)",
-        "SlowdownIsActive" : "No"
-    ]
     
     func loadSettingsFromDisk() {
         let settingsFileContent = FileManager().contents(atPath: settingsFile)
@@ -60,7 +67,9 @@ class ISSettings {
         }
     }
     
-    func updateSettings(pipeConf: SlowdownType, endDate: Date) {
-        
+    func updateSettings(pipeConf: SlowdownType, endDate: Date, slowdownIsActive: Bool) {
+        settingsDict[ISSettings.slowdownTypeKey] = "\(pipeConf.rawValue)"
+        settingsDict[ISSettings.endDateKey] = "\(endDate.ISO8601Format())"
+        settingsDict[ISSettings.slowdownIsActiveKey] = "\(slowdownIsActive)"
     }
 }

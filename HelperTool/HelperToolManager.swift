@@ -17,10 +17,10 @@ class HelperToolManager: NSObject {
     
     func runSlowdownIfNecessary() {
         let settings = ISSettings.shared
-        if settings.settingsDict["SlowdownIsActive"] == "Yes" {
+        if settings.settingsDict["SlowdownIsActive"] == "true" {
             let endDate = try? Date(settings.settingsDict["EndDate"]!, strategy: .iso8601)
             if Date.now > endDate! {
-                settings.settingsDict["SlowdownIsActive"] = "No"
+                settings.settingsDict["SlowdownIsActive"] = "false"
             } else {
                 let rawValue = Int(settings.settingsDict["SlowdownType"]!)
                 let slowdownType = SlowdownType(rawValue: rawValue!)

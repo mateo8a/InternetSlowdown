@@ -96,6 +96,7 @@ class SlowdownSetup {
     private enum ExecutablePaths: String {
         case pfctl = "/sbin/pfctl"
         case dnctl = "/usr/sbin/dnctl"
+        // case launchctl = "/bin/launchctl" // Look into separating these so there is safety as to which executable paths can take which set of arguments. In executeCommand, make the arguments conform to protocols and check if the arguments passed can go with each other (pfctl with pftcl commands, etc.).
     }
     
     private enum Args {
