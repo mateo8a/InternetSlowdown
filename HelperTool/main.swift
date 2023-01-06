@@ -7,7 +7,7 @@
 
 import Foundation
 
-let delegate = HelperToolManager()
+let delegate = HelperToolManager.shared
 let listener = NSXPCListener(machServiceName: HelperTool.machServiceName)
 listener.delegate = delegate;
 listener.resume()

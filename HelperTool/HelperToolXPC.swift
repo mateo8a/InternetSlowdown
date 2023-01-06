@@ -19,6 +19,7 @@ extension HelperTool: HelperToolProtocol {
         ISLogger.logger.info("Daemon found authorization to start slowdown...")
         SlowdownMethods.startSlowdown(pipeConf: pipeConf)
         ISSettings.shared.updateSettings(pipeConf: pipeConf, endDate: endDate, slowdownIsActive: true)
+        HelperToolManager.shared.startCheckupTimer()
     }
     
     func stopSlowdown(auth: UnsafePointer<AuthorizationExternalForm>, functionName: String) {

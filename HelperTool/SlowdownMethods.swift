@@ -11,27 +11,24 @@ struct SlowdownMethods {
     private init() {}
     
     static func startSlowdown(pipeConf: SlowdownType) {
-        let slowdownSetup = SlowdownSetup.shared
-        slowdownSetup.setUpPfFile()
-        slowdownSetup.setUpDnPipe()
-        slowdownSetup.setUpAnchorFile()
-        slowdownSetup.enableFirewall()
-        slowdownSetup.loadDummynetAnchor()
-        slowdownSetup.configDnPipe(pipeConf: pipeConf)
+        SlowdownSetup.setUpPfFile()
+        SlowdownSetup.setUpDnPipe()
+        SlowdownSetup.setUpAnchorFile()
+        SlowdownSetup.enableFirewall()
+        SlowdownSetup.loadDummynetAnchor()
+        SlowdownSetup.configDnPipe(pipeConf: pipeConf)
     }
     
     static func stopSlowdown() {
-        let slowdownSetup = SlowdownSetup.shared
-        slowdownSetup.deleteDnPipe()
-        slowdownSetup.disableFirewall()
+        SlowdownSetup.deleteDnPipe()
+        SlowdownSetup.disableFirewall()
     }
     
     static func restartSlowdown(pipeConf: SlowdownType) {
-        let slowdownSetup = SlowdownSetup.shared
-        slowdownSetup.setUpDnPipe()
-        slowdownSetup.setUpAnchorFile()
-        slowdownSetup.enableFirewall()
-        slowdownSetup.loadDummynetAnchor()
-        slowdownSetup.configDnPipe(pipeConf: pipeConf)
+        SlowdownSetup.setUpDnPipe()
+        SlowdownSetup.setUpAnchorFile()
+        SlowdownSetup.enableFirewall()
+        SlowdownSetup.loadDummynetAnchor()
+        SlowdownSetup.configDnPipe(pipeConf: pipeConf)
     }
 }

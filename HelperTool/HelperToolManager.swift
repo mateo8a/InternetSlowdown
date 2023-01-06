@@ -8,10 +8,18 @@
 import Foundation
 
 class HelperToolManager: NSObject {
-    override init() {
+    override private init() {
         super.init()
-        let settings = ISSettings.shared
-        settings.loadSettingsFromDisk()
+        helperToolDidLaunch()
+    }
+    
+    static let shared = HelperToolManager()
+    
+    var dnPipe = 0
+    var secondsSinceLastUpdate = 0
+    
+    func helperToolDidLaunch() {
+        ISSettings.shared.loadSettingsFromDisk()
         runSlowdownIfNecessary()
     }
     
@@ -26,6 +34,12 @@ class HelperToolManager: NSObject {
                 let slowdownType = SlowdownType(rawValue: rawValue!)
                 SlowdownMethods.restartSlowdown(pipeConf: slowdownType!)
             }
+        }
+    }
+    
+    func startCheckupTimer() {
+        let timer = Timer.scheduledTimer(withTimeInterval: 30, repeats: true) { timer in
+            
         }
     }
 }

@@ -7,14 +7,11 @@
 
 import Foundation
 
-class SlowdownSetup {
-    static let shared = SlowdownSetup()
+struct SlowdownSetup {
     
     private init() {}
     
-    var dnPipe: Int = 0
-    
-    func setUpPfFile() {
+    static func setUpPfFile() {
         ISLogger.logger.info("Setting up pf.conf file...")
         let pfFilePath = URL(fileURLWithPath: "/etc/pf.conf")
         let dummynetAnchor = "dummynet-anchor \"com.mochoaco\"\n"
@@ -30,9 +27,10 @@ class SlowdownSetup {
         }
     }
     
-    func setUpAnchorFile() {
+    static func setUpAnchorFile() {
         ISLogger.logger.info("Setting up dummynet anchor file...")
         let anchorFilePath = "/etc/pf.anchors/com.mochoaco"
+        let dnPipe = HelperToolManager.shared.dnPipe
         let anchorRules = """
                           no dummynet quick on lo0 all
                           dummynet in proto tcp from any port 443 pipe \(dnPipe)
@@ -48,36 +46,37 @@ class SlowdownSetup {
         }
     }
     
-    func enableFirewall() {
+    static func enableFirewall() {
         ISLogger.logger.info("Enabling firewall...")
         executeCommand(executable: .pfctl, args: .enableFirewall)
     }
     
-    func disableFirewall() {
+    static func disableFirewall() {
         ISLogger.logger.info("Disabling firewall...")
         executeCommand(executable: .pfctl, args: .disableFirewall)
     }
     
-    func setUpDnPipe() {
+    static func setUpDnPipe() {
         ISLogger.logger.info("Setting up dummynet pipe number variable...")
-        if dnPipe == 0 { // This ensures that the dummynet pipe is modified only once, when its value is its default value (namely 0).
+        if HelperToolManager.shared.dnPipe == 0 { // This ensures that the dummynet pipe is modified only once, when its value is its default value (namely 0).
             var outputOfRunningDnctlCommand = "placeholder non-empty output"
             var i = 0
             while !outputOfRunningDnctlCommand.isEmpty {
                 i += 1
                 outputOfRunningDnctlCommand = executeCommand(executable: .dnctl, args: .findPipe(pipe: i))
             }
-            dnPipe = i
+            HelperToolManager.shared.dnPipe = i
         }
     }
     
-    func loadDummynetAnchor() {
+    static func loadDummynetAnchor() {
         ISLogger.logger.info("Loading dummynet anchor...")
         executeCommand(executable: .pfctl, args: .loadDummynetAnchor)
     }
     
-    func configDnPipe(pipeConf: SlowdownType) {
+    static func configDnPipe(pipeConf: SlowdownType) {
         ISLogger.logger.info("Configuring dummynet pipe with dnctl...")
+        let dnPipe = HelperToolManager.shared.dnPipe
         switch pipeConf {
         case .defaultSlowdown:
             executeCommand(executable: .dnctl, args: .defaultConf(pipe: dnPipe))
@@ -88,9 +87,9 @@ class SlowdownSetup {
         }
     }
     
-    func deleteDnPipe() {
-        executeCommand(executable: .dnctl, args: .deletePipe(pipe: dnPipe))
-        dnPipe = 0
+    static func deleteDnPipe() {
+        executeCommand(executable: .dnctl, args: .deletePipe(pipe: HelperToolManager.shared.dnPipe))
+        HelperToolManager.shared.dnPipe = 0
     }
     
     private enum ExecutablePaths: String {
@@ -131,7 +130,7 @@ class SlowdownSetup {
     }
     
     // Taken from https://stackoverflow.com/questions/26971240/how-do-i-run-a-terminal-command-in-a-swift-script-e-g-xcodebuild
-    private func executeCommand(executable: ExecutablePaths, args: Args) -> String {
+    static private func executeCommand(executable: ExecutablePaths, args: Args) -> String {
         ISLogger.logger.info("Executing command \(executable.rawValue, privacy: .public) with args \(args.toString(), privacy: .public)...")
         let task = Process()
         let swiftPipe = Pipe()
