@@ -17,6 +17,7 @@ struct SlowdownMethods {
         SlowdownSetup.enableFirewall()
         SlowdownSetup.loadDummynetAnchor()
         SlowdownSetup.configDnPipe(pipeConf: pipeConf)
+        HelperToolManager.shared.startCheckupTimer()
     }
     
     static func stopSlowdown() {
@@ -30,5 +31,6 @@ struct SlowdownMethods {
         SlowdownSetup.enableFirewall()
         SlowdownSetup.loadDummynetAnchor()
         SlowdownSetup.configDnPipe(pipeConf: pipeConf)
+        HelperToolManager.shared.startCheckupTimer()
     }
 }

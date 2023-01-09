@@ -17,7 +17,14 @@ class HelperToolManager: NSObject {
     
     var dnPipe = 0
     var secondsSinceLastUpdate = 0
-    
+    var checkupTimer: Timer? = nil {
+        willSet {
+            if let ct = checkupTimer {
+                ct.invalidate()
+            }
+        }
+    }
+            
     func helperToolDidLaunch() {
         ISSettings.shared.loadSettingsFromDisk()
         runSlowdownIfNecessary()
@@ -25,22 +32,38 @@ class HelperToolManager: NSObject {
     
     func runSlowdownIfNecessary() {
         let settings = ISSettings.shared
-        if settings.settingsDict["SlowdownIsActive"] == "true" {
-            let endDate = try? Date(settings.settingsDict["EndDate"]!, strategy: .iso8601)
-            if Date.now > endDate! {
-                settings.settingsDict["SlowdownIsActive"] = "false"
-            } else {
-                let rawValue = Int(settings.settingsDict["SlowdownType"]!)
+        if settings.settingsDict[ISSettings.slowdownIsActiveKey] == "\(true)" {
+            if slowdownShouldStillRun() {
+                let rawValue = Int(settings.settingsDict[ISSettings.slowdownTypeKey]!)
                 let slowdownType = SlowdownType(rawValue: rawValue!)
                 SlowdownMethods.restartSlowdown(pipeConf: slowdownType!)
+            } else {
+                settings.settingsDict[ISSettings.slowdownIsActiveKey] = "\(false)"
+                self.unloadDaemon()
             }
         }
     }
     
     func startCheckupTimer() {
-        let timer = Timer.scheduledTimer(withTimeInterval: 30, repeats: true) { timer in
-            
+        checkupTimer = Timer.scheduledTimer(withTimeInterval: 2.5, repeats: true) { timer in
+            timer.tolerance = 0.75
+            if !self.slowdownShouldStillRun() {
+                SlowdownMethods.stopSlowdown()
+                ISSettings.shared.settingsDict[ISSettings.slowdownIsActiveKey] = "\(false)"
+                timer.invalidate()
+                self.unloadDaemon()
+            }
         }
+    }
+    
+    func slowdownShouldStillRun() -> Bool {
+        let settings = ISSettings.shared
+        let endDate = try? Date(settings.settingsDict["EndDate"]!, strategy: .iso8601)
+        return endDate! > Date.now
+    }
+    
+    func unloadDaemon() {
+        
     }
 }
 

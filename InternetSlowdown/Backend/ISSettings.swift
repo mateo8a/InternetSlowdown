@@ -28,7 +28,7 @@ class ISSettings {
     var defaultSettings: [String : String] = [
         ISSettings.endDateKey : "\(Date.distantPast.ISO8601Format())",
         ISSettings.slowdownTypeKey : "\(SlowdownType.defaultSlowdown.rawValue)",
-        ISSettings.slowdownIsActiveKey : "false"
+        ISSettings.slowdownIsActiveKey : "\(false)"
     ]
     
     func createSettingsFile() {
