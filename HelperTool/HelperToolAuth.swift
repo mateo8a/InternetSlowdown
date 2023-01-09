@@ -17,7 +17,7 @@ struct HelperToolAuth {
         
         guard (resultCode == errAuthorizationSuccess) else {
             let error: CFString = SecCopyErrorMessageString(resultCode, nil)!
-            ISLogger.logger.error("Failed to create authorization form from external auth form with error: \(error)")
+            ISLogger.logger.error("Failed to create authorization form from external auth form with error: \(error, privacy: .public)")
             return false
         }
         

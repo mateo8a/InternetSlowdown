@@ -11,7 +11,7 @@ struct ContentView: View {
     @NSApplicationDelegateAdaptor private var appController: AppController
     
     @State var slowdownType: SlowdownType = .defaultSlowdown
-    @State var slowdownDuration: TimeInterval = 600
+    @State var slowdownDuration: TimeInterval = 120
     
     var body: some View {
         HStack{

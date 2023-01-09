@@ -72,4 +72,9 @@ class ISSettings {
         settingsDict[ISSettings.endDateKey] = "\(endDate.ISO8601Format())"
         settingsDict[ISSettings.slowdownIsActiveKey] = "\(slowdownIsActive)"
     }
+    
+    func updateSettings(endDate: Date, slowdownIsActive: Bool) {
+        settingsDict[ISSettings.endDateKey] = "\(endDate.ISO8601Format())"
+        settingsDict[ISSettings.slowdownIsActiveKey] = "\(slowdownIsActive)"
+    }
 }

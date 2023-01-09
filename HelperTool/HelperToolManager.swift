@@ -17,7 +17,7 @@ class HelperToolManager: NSObject {
     
     var dnPipe = 0
     var secondsSinceLastUpdate = 0
-    var checkupTimer: Timer? = nil {
+    private var checkupTimer: Timer? = nil {
         willSet {
             if let ct = checkupTimer {
                 ct.invalidate()
@@ -34,6 +34,7 @@ class HelperToolManager: NSObject {
         let settings = ISSettings.shared
         if settings.settingsDict[ISSettings.slowdownIsActiveKey] == "\(true)" {
             if slowdownShouldStillRun() {
+                ISLogger.logger.info("Slowdown is restarting (runSlowdownIfNecessary)...")
                 let rawValue = Int(settings.settingsDict[ISSettings.slowdownTypeKey]!)
                 let slowdownType = SlowdownType(rawValue: rawValue!)
                 SlowdownMethods.restartSlowdown(pipeConf: slowdownType!)
@@ -45,8 +46,10 @@ class HelperToolManager: NSObject {
     }
     
     func startCheckupTimer() {
-        checkupTimer = Timer.scheduledTimer(withTimeInterval: 2.5, repeats: true) { timer in
+        ISLogger.logger.info("Timer is about to run")
+        checkupTimer = Timer(timeInterval: 2.5, repeats: true) { timer in
             timer.tolerance = 0.75
+            ISLogger.logger.info("Timer is running")
             if !self.slowdownShouldStillRun() {
                 SlowdownMethods.stopSlowdown()
                 ISSettings.shared.settingsDict[ISSettings.slowdownIsActiveKey] = "\(false)"
@@ -54,6 +57,12 @@ class HelperToolManager: NSObject {
                 self.unloadDaemon()
             }
         }
+        RunLoop.current.add(checkupTimer!, forMode: .common)
+    }
+    
+    func stopCheckupTimer() {
+        checkupTimer?.invalidate()
+        checkupTimer = nil
     }
     
     func slowdownShouldStillRun() -> Bool {
@@ -63,7 +72,7 @@ class HelperToolManager: NSObject {
     }
     
     func unloadDaemon() {
-        
+        // if `launchctl unload /Library/LaunchDaemons/com.mochoaco.InternetSlowdownd.plist` is used, the daemon won't restart for a new slowdown. It will restart only when the computer restarts/the user logs out and logs in again.
     }
 }
 
