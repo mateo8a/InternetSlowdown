@@ -25,13 +25,14 @@ extension HelperTool {
             return
         }
         
-        if #available(macOS 13, *) {
-            do {
-                try SMAppService.daemon(plistName: "com.mochoaco.InternetSlowdownd.plist").register()
-            } catch {
-                ISLogger.errorError(with_message: "SMAppService could not register the helper tool due to the following error: ", error: error)
-            }
-        } else {
+//        Uncomment when I have macOS 13 or newer installed, otherwise I cannot test whether the app works with this new API or not
+//        if #available(macOS 13, *) {
+//            do {
+//                try SMAppService.daemon(plistName: "com.mochoaco.InternetSlowdownd.plist").register()
+//            } catch {
+//                ISLogger.errorError(with_message: "SMAppService could not register the helper tool due to the following error: ", error: error)
+//            }
+//        } else {
             var error: Unmanaged<CFError>?
             let installationStatus = SMJobBless(kSMDomainSystemLaunchd, "com.mochoaco.InternetSlowdownd" as CFString, Authorization.clientAuthRef!, &error)
             if !installationStatus {
@@ -39,6 +40,6 @@ extension HelperTool {
             } else {
                 ISLogger.logger.info("SMJobBless installed the helper tool successfully!")
             }
-        }
+//        }
     }
 }

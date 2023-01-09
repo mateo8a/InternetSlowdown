@@ -4,6 +4,7 @@
 <dict>
     <key>Label</key>
     <string>com.mochoaco.InternetSlowdownd</string>
+<!--RunAtLoad is true so that the user cannot reset the slowdown by restarting their computer-->
     <key>RunAtLoad</key>
     <true/>
     <key>MachServices</key>
@@ -11,6 +12,7 @@
         <key>com.mochoaco.InternetSlowdownd</key>
         <true/>
     </dict>
+<!--BundleProgram is a key required by the SMAppService API, available in macOS 13.0 and newer.-->
     <key>BundleProgram</key>
     <string>Contents/Library/LaunchServices/com.mochoaco.InternetSlowdownd</string>
 </dict>

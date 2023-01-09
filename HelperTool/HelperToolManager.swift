@@ -57,7 +57,7 @@ class HelperToolManager: NSObject {
                 self.unloadDaemon()
             }
         }
-        RunLoop.current.add(checkupTimer!, forMode: .common)
+        RunLoop.main.add(checkupTimer!, forMode: .common) // Timer must run on the main thread for it to work properly, but why?? Look into this.
     }
     
     func stopCheckupTimer() {
@@ -72,7 +72,7 @@ class HelperToolManager: NSObject {
     }
     
     func unloadDaemon() {
-        // if `launchctl unload /Library/LaunchDaemons/com.mochoaco.InternetSlowdownd.plist` is used, the daemon won't restart for a new slowdown. It will restart only when the computer restarts/the user logs out and logs in again.
+        // if `launchctl unload /Library/LaunchDaemons/com.mochoaco.InternetSlowdownd.plist` is used, the daemon won't restart for a new slowdown. It will restart only when the computer restarts/the user logs out and logs in again. If I use this, then the daemon should be installed whenever a new
     }
 }
 
